@@ -9,9 +9,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -22,31 +24,62 @@ public class MIFU {
 	public static void main(String[] args) throws IOException, InterruptedException {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		
-		String currdir = System.getProperty("user.dir");
-		JOptionPane.showMessageDialog(null, "Welcome to the Mod Installer From URL v5!\nThis downloads mods \nautomatically for you", "MIFU", 1);
-		String DLDIR = JOptionPane.showInputDialog(null, "Enter the location of your\nminecraft installation\nLeave blank for the current dir", "MIFU", 1);
-		if(DLDIR == null){DLDIR = currdir;}
-		
-		JFrame gui = new JFrame("MIFU");
-		JLabel text = new JLabel("Preparing to download...            ");
+		JFrame mainWindow = new JFrame();
+		JPanel consoleLog = new JPanel();
+		JPanel welcome = new JPanel();
+		JLabel text = new JLabel();
+		JTextArea log = new JTextArea(20,30);
+		//JButton next = new JButton();
 		JProgressBar progress = new JProgressBar();
+		JScrollPane scroll = new JScrollPane(log);
+		
+		
+		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainWindow.setLocation(dim.width/2-welcome.getSize().width/2, dim.height/2-welcome.getSize().height/2);
+		mainWindow.add(welcome, "North");
+		mainWindow.add(consoleLog, "South");
+		
+		welcome.add(text);
+		text.setText("Welcome! This is a test window so far as it is not done yet... PLEASE WAIT UNTIL I MAKE THIS WORK C:");		
+		log.setEditable(false);
+		
 		progress.setMinimum(0);
         progress.setValue(0);
         progress.setStringPainted(true);
         progress.setSize(300, 100);
         
-		gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		gui.getContentPane().setLayout(new BorderLayout ());
-		gui.getContentPane().add(text, BorderLayout.NORTH);
-		gui.getContentPane().add(progress, BorderLayout.CENTER);
-		JTextArea log = new JTextArea(20,30);
-		log.setEditable(false);
-		JScrollPane scroll = new JScrollPane(log);
 		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		gui.getContentPane().add(scroll, BorderLayout.PAGE_END);
-		gui.pack();
-		gui.setLocation(dim.width/2-gui.getSize().width/2-400, dim.height/2-gui.getSize().height/2);
-		gui.setVisible(true);
+		
+		mainWindow.getContentPane().add(scroll, BorderLayout.PAGE_END);
+		mainWindow.pack();
+		mainWindow.setVisible(true);
+		
+		
+		String currdir = System.getProperty("user.dir");
+		//JOptionPane.showMessageDialog(null, "Welcome to the Mod Installer From URL v5!\nThis downloads mods \nautomatically for you", "MIFU", 1);
+		String DLDIR = JOptionPane.showInputDialog(null, "Enter the location of your\nminecraft installation\nLeave blank for the current dir", "MIFU", 1);
+		if(DLDIR == null){DLDIR = currdir;}
+		
+		//JFrame gui = new JFrame("MIFU");
+		//JLabel text = new JLabel("Preparing to download...            ");
+		//JProgressBar progress = new JProgressBar();
+		//progress.setMinimum(0);
+        //progress.setValue(0);
+        //progress.setStringPainted(true);
+        //progress.setSize(300, 100);
+        
+		//gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//gui.getContentPane().setLayout(new BorderLayout ());
+		//gui.getContentPane().add(text, BorderLayout.NORTH);
+		//gui.getContentPane().add(progress, BorderLayout.CENTER);
+		//JTextArea log = new JTextArea(20,30);
+		//log.setEditable(false);
+		//JScrollPane scroll = new JScrollPane(log);
+		//scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		
+		//gui.pack();
+		//gui.setLocation(dim.width/2-gui.getSize().width/2-400, dim.height/2-gui.getSize().height/2);
+		//gui.setVisible(true);
 	    
 		Thread.sleep(1000);
 	    Download dlObject = new Download();
@@ -86,7 +119,7 @@ public class MIFU {
 			    String save = modlst[1];
 			    if (link.equalsIgnoreCase("forge")) {
 			    	dlObject.downloadfile("http://files.minecraftforge.net/minecraftforge/minecraftforge-installer-"+save+".jar", currdir, "/forge-installer-"+save+".jar");
-			    	JOptionPane.showMessageDialog(null, "MINECRAFT FORGE DETECTED\nYOU MUST INSTALL IT BEFORE YOU CAN PLAY\nTHE INSTALLER IS LOCATED AT: "+currdir+"/forge-installer-"+save+".jar", "MIFU", 1);
+			    	//JOptionPane.showMessageDialog(null, "MINECRAFT FORGE DETECTED\nYOU MUST INSTALL IT BEFORE YOU CAN PLAY\nTHE INSTALLER IS LOCATED AT: "+currdir+"/forge-installer-"+save+".jar", "MIFU", 1);
 			    	log.append("Downloaded: Minecraft forge version: "+save+"\n");
 				    log.setCaretPosition(log.getDocument().getLength());
 			    } else {
@@ -121,10 +154,10 @@ public class MIFU {
 		log.append("Done!\n");
 		log.setCaretPosition(log.getDocument().getLength());
 		Thread.sleep(1000);
-		gui.dispose();
+		//gui.dispose();
 		//logwindow.dispose();
-		if(!modlistcheck){JOptionPane.showMessageDialog(null, "Finished downloading mods!\nYou can play now. \nThe Official BlocBin Server\nIP is mod.bloccrew.com", "MIFU", 1);
-		}else{JOptionPane.showMessageDialog(null, "Your download is now complete!", "MIFU", 1);}
+		//if(!modlistcheck){JOptionPane.showMessageDialog(null, "Finished downloading mods!\nYou can play now. \nThe Official BlocBin Server\nIP is mod.bloccrew.com", "MIFU", 1);
+		//}else{JOptionPane.showMessageDialog(null, "Your download is now complete!", "MIFU", 1);}
 	}
 
 }
