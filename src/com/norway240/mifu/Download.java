@@ -1,4 +1,5 @@
-package com.norway240.mifu.v5;
+package com.norway240.mifu;
+
 
 import java.io.FileOutputStream;
 import java.io.IOException;
