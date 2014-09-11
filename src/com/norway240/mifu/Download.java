@@ -1,6 +1,7 @@
 package com.norway240.mifu;
 
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,6 +9,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Download {
+	public void newDir(String dir){
+		String mdir = (System.getProperty("user.home")+"/.mifu");
+		File newdir = new File(mdir+dir);
+		newdir.mkdir();
+	}
+	
 	public void downloadfile(String DLURL, String DLDIR, String DLFILE) {
 		System.out.println("URL: "+ DLURL);
 		System.out.println("DIR: "+ DLDIR);
