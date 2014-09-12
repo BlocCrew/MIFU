@@ -5,16 +5,24 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.io.File;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class MIFU {
 
+	static ButtonActionListener bal = new ButtonActionListener();
 	static JPanel panel = new JPanel(new GridBagLayout());
+	static JButton chmods = new JButton("Choose modlist");
 	static GridBagConstraints c = new GridBagConstraints();
+	final static String homedir = System.getProperty("user.home");
+	final static File mifudir = new File(homedir+"/.mifu");
 	
-	private static void addSomething(Component comp, int x, int y, int width){
+	private static void addSomething(Component comp, String type, int x, int y, int width){
+		if(type.equalsIgnoreCase("button")){
+			((AbstractButton) comp).addActionListener(bal.act);
+		}
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = x;
 		c.gridy = y;
@@ -24,18 +32,16 @@ public class MIFU {
 	
 	public static void main(String[] args){
 		JFrame frame = new JFrame("MIFU");
-		JButton chmods = new JButton("Choose modlist");
-		String homedir = System.getProperty("user.home");
-		File mifudir = new File(homedir+"/.mifu");
 		Download download = new Download();
 		
 		if (!mifudir.exists()){
 			mifudir.mkdir();
 			download.newDir("/modlist");
+			download.downloadfile("http://deciliter.bloccrew.com/modlist.txt", "/modlist/modlist.txt");
 			System.out.println("MIFU Directory created");
 		}
 		
-		addSomething(chmods,0,0,1);
+		addSomething(chmods,"button",0,0,1);
 		frame.add(panel);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

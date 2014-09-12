@@ -15,10 +15,11 @@ public class Download {
 		newdir.mkdir();
 	}
 	
-	public void downloadfile(String DLURL, String DLDIR, String DLFILE) {
+	public void downloadfile(String DLURL, String DLFILE) {
+		String DLOC = MIFU.mifudir+DLFILE;
+		
 		System.out.println("URL: "+ DLURL);
-		System.out.println("DIR: "+ DLDIR);
-		System.out.println("FILE: "+ DLFILE);
+		System.out.println("FILE: "+ DLOC);
 		
 		try {
 	        long startTime = System.currentTimeMillis();
@@ -26,7 +27,7 @@ public class Download {
 	        URL url = new URL(DLURL);
 	        url.openConnection();
 	        InputStream reader = url.openStream();
-	        FileOutputStream writer = new FileOutputStream(DLDIR+DLFILE);
+	        FileOutputStream writer = new FileOutputStream(DLOC);
 	        byte[] buffer = new byte[153600];
 	        int totalBytesRead = 0;
 	        int bytesRead = 0;
