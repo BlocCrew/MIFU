@@ -9,13 +9,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Download {
-	public void newDir(String dir){
+	
+	public static void newDir(String dir){
 		String mdir = (System.getProperty("user.home")+"/.mifu");
 		File newdir = new File(mdir+dir);
 		newdir.mkdir();
 	}
 	
-	public void downloadfile(String DLURL, String DLFILE) {
+	public static void downloadfile(String DLURL, String DLFILE) {
 		String DLOC = MIFU.mifudir+DLFILE;
 		
 		System.out.println("URL: "+ DLURL);
