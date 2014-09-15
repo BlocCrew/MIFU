@@ -32,7 +32,7 @@ public class DList {
 			    String link = modlst[0];
 			    String save = modlst[1];
 			    if (link.equalsIgnoreCase("forge")) {
-			    	Download.downloadfile("http://files.minecraftforge.net/minecraftforge/minecraftforge-installer-"+save+".jar", MIFU.mifudir+"/forge-installer-"+save+".jar");
+			    	Download.downloadfile("http://files.minecraftforge.net/minecraftforge/minecraftforge-installer-"+save+".jar", "/forge-installer-"+save+".jar");
 			    	System.out.println("Downloaded: Minecraft forge version: "+save);
 			    } else {
 				    Download.downloadfile(link, save);
