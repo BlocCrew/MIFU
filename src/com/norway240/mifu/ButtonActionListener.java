@@ -27,7 +27,21 @@ public class ButtonActionListener {
 					System.out.println("Chosen: "+chooser.getSelectedFile().getAbsolutePath());
 					MIFU.label.setText("Selected: "+chooser.getSelectedFile().getAbsolutePath());
 			    }
+			}else if(e.getSource()==MIFU.chdir){
+				System.out.println("CHOOSEDIR");
+				MIFU.dldir = MIFU.mifudir.toString();
+				System.out.println("Default Selected: "+MIFU.dldir);
+				MIFU.label2.setText("Default Selected: "+MIFU.dldir);
 				
+				JFileChooser chooser = new JFileChooser("Choose a dir");
+				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			    int returnVal = chooser.showOpenDialog(chooser);
+			    if(returnVal == JFileChooser.APPROVE_OPTION) {
+			    	MIFU.dldir = chooser.getSelectedFile().getAbsolutePath();
+					System.out.println("Chosen: "+chooser.getSelectedFile().getAbsolutePath());
+					MIFU.label2.setText("Selected: "+chooser.getSelectedFile().getAbsolutePath());
+					chooser.getSelectedFile().getAbsoluteFile().mkdirs();
+			    }
 			}else if(e.getSource()==MIFU.dlmods){
 				System.out.println("DOWNLOAD");
 				try {

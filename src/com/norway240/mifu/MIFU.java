@@ -14,10 +14,13 @@ import javax.swing.JPanel;
 public class MIFU {
 
 	static File selectedModlist;
+	static String dldir;
 	static ButtonActionListener bal = new ButtonActionListener();
 	static JPanel panel = new JPanel(new GridBagLayout());
 	static JLabel label = new JLabel("No list chosen");
+	static JLabel label2 = new JLabel("No dir chosen");
 	static JButton chmods = new JButton("Choose modlist");
+	static JButton chdir = new JButton("Choose dir");
 	static JButton dlmods = new JButton("download");
 	static GridBagConstraints c = new GridBagConstraints();
 	final static String homedir = System.getProperty("user.home");
@@ -45,8 +48,10 @@ public class MIFU {
 		}
 		
 		addSomething(chmods,"button",0,0,1);
-		addSomething(label,"label",0,1,1);
-		addSomething(dlmods,"button",0,2,1);
+		addSomething(chdir,"button",1,0,1);
+		addSomething(label,"label",0,1,2);
+		addSomething(label2,"label",0,2,2);
+		addSomething(dlmods,"button",0,3,1);
 		frame.add(panel);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

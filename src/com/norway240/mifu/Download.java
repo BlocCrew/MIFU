@@ -17,7 +17,7 @@ public class Download {
 	}
 	
 	public static void downloadfile(String DLURL, String DLFILE) {
-		String DLOC = MIFU.mifudir+DLFILE;
+		String DLOC = MIFU.dldir+DLFILE;
 		
 		System.out.println("URL: "+ DLURL);
 		System.out.println("FILE: "+ DLOC);
