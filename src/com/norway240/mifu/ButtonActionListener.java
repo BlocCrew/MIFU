@@ -2,7 +2,6 @@ package com.norway240.mifu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JFileChooser;
@@ -13,10 +12,6 @@ public class ButtonActionListener {
 		public void actionPerformed(ActionEvent e){
 			if(e.getSource()==MIFU.chmods){
 				System.out.println("CHOOSE");
-				MIFU.selectedModlist = new File(MIFU.mifudir+"/modlist/modlist.txt");
-				System.out.println("Default Selected: "+MIFU.selectedModlist);
-				MIFU.label.setText("Default Selected: "+MIFU.selectedModlist);
-				
 				JFileChooser chooser = new JFileChooser("Choose a modlist");
 			    FileNameExtensionFilter filter = new FileNameExtensionFilter(
 			        "Modlist (.txt)", "txt");
@@ -29,10 +24,6 @@ public class ButtonActionListener {
 			    }
 			}else if(e.getSource()==MIFU.chdir){
 				System.out.println("CHOOSEDIR");
-				MIFU.dldir = MIFU.mifudir.toString();
-				System.out.println("Default Selected: "+MIFU.dldir);
-				MIFU.label2.setText("Default Selected: "+MIFU.dldir);
-				
 				JFileChooser chooser = new JFileChooser("Choose a dir");
 				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 			    int returnVal = chooser.showOpenDialog(chooser);
