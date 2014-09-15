@@ -1,7 +1,6 @@
 package com.norway240.mifu;
 
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,12 +8,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Download {
-	
-	public static void newDir(String dir){
-		String mdir = (System.getProperty("user.home")+"/.mifu");
-		File newdir = new File(mdir+dir);
-		newdir.mkdir();
-	}
 	
 	public static void downloadfile(String DLURL, String DLFILE) {
 		String DLOC = MIFU.dldir+DLFILE;
@@ -38,14 +31,12 @@ public class Download {
 	           totalBytesRead += bytesRead;
 	        }
 	        long endTime = System.currentTimeMillis();
-	        System.out.println("Downloaded: "+DLFILE+ (new Integer(totalBytesRead).toString()) + " bytes read (" + (new Long(endTime - startTime).toString()) + " millseconds).\n");
+	        System.out.println("Downloaded: "+DLOC+ (new Integer(totalBytesRead).toString()) + " bytes read (" + (new Long(endTime - startTime).toString()) + " millseconds).\n");
 	        writer.close();
 	        reader.close();
-			}
-			catch (MalformedURLException e) {
+			}catch (MalformedURLException e) {
 				e.printStackTrace();
-			}
-			catch (IOException e) {
+			}catch (IOException e) {
 				e.printStackTrace();
 		}
 	}

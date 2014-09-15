@@ -2,7 +2,7 @@ package com.norway240.mifu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
+import java.io.File;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -32,14 +32,13 @@ public class ButtonActionListener {
 					System.out.println("Chosen: "+chooser.getSelectedFile().getAbsolutePath());
 					MIFU.label2.setText("Selected: "+chooser.getSelectedFile().getAbsolutePath());
 					chooser.getSelectedFile().getAbsoluteFile().mkdirs();
+					File modsfolder = new File(chooser.getSelectedFile().getAbsolutePath()+"/mods");
+					modsfolder.mkdir();
 			    }
 			}else if(e.getSource()==MIFU.dlmods){
 				System.out.println("DOWNLOAD");
-				try {
-					DList.dlModlist(MIFU.selectedModlist);
-				} catch (InterruptedException | IOException e1) {
-					e1.printStackTrace();
-				}
+				//MIFU.progress.setIndeterminate(true);
+				new Thread(new DThread()).start();
 			}
 		}
 	};

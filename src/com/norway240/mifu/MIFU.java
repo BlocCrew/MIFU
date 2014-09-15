@@ -10,9 +10,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 
 public class MIFU {
-	//TODO: Check why files aren't downloading
+	
 	static File selectedModlist;
 	static ButtonActionListener bal = new ButtonActionListener();
 	static JPanel panel = new JPanel(new GridBagLayout());
@@ -21,6 +22,7 @@ public class MIFU {
 	static JButton chmods = new JButton("Choose modlist");
 	static JButton chdir = new JButton("Choose dir");
 	static JButton dlmods = new JButton("download");
+	static JProgressBar progress = new JProgressBar(0,100);
 	static GridBagConstraints c = new GridBagConstraints();
 	final static String homedir = System.getProperty("user.home");
 	final static File mifudir = new File(homedir+"/.mifu");
@@ -39,6 +41,8 @@ public class MIFU {
 	
 	public static void main(String[] args){
 		JFrame frame = new JFrame("MIFU");
+		progress.setStringPainted(true);
+		progress.setString("Click download to begin");
 		
 		selectedModlist = new File(mifudir+"/modlist/modlist.txt");
 		System.out.println("Default Selected: "+selectedModlist);
@@ -49,7 +53,10 @@ public class MIFU {
 		
 		if (!mifudir.exists()){
 			mifudir.mkdir();
-			Download.newDir("/modlist");
+			File modlists = new File(mifudir.toString()+"/modlist");
+			modlists.mkdir();
+			File mods = new File(mifudir.toString()+"/mods");
+			mods.mkdir();
 			Download.downloadfile("http://deciliter.bloccrew.com/modlist.txt", "/modlist/modlist.txt");
 			System.out.println("MIFU Directory created");
 		}
@@ -59,6 +66,7 @@ public class MIFU {
 		addSomething(chdir,"button",0,2,1);
 		addSomething(label2,"label",0,3,1);
 		addSomething(dlmods,"button",0,4,1);
+		addSomething(progress,"progress",0,5,2);
 		frame.add(panel);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
