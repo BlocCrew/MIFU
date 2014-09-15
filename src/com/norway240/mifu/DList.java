@@ -47,12 +47,12 @@ public class DList {
 				System.out.println("Unexpected File IO Error");
 			}
 
-		boolean configcheck = new File(MIFU.mifudir+"/config.zip").isFile();
+		boolean configcheck = new File(CONSTS.MIFUDIR+"/config.zip").isFile();
 	    if(configcheck) {
 	    	System.out.println("Extracting config.zip");
-	    	File configfolder = new File(MIFU.mifudir+"/config");
+	    	File configfolder = new File(CONSTS.MIFUDIR+"/config");
 	    	configfolder.mkdir();
-	    	Extract.ExtractZipFile(MIFU.mifudir+"/config.zip", MIFU.mifudir+"/config/");
+	    	Extract.ExtractZipFile(CONSTS.MIFUDIR+"/config.zip", CONSTS.MIFUDIR+"/config/");
 	    	Thread.sleep(1000);
 	    }
 	}

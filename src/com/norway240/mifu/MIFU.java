@@ -24,9 +24,7 @@ public class MIFU {
 	static JButton dlmods = new JButton("download");
 	static JProgressBar progress = new JProgressBar(0,100);
 	static GridBagConstraints c = new GridBagConstraints();
-	final static String homedir = System.getProperty("user.home");
-	final static File mifudir = new File(homedir+"/.mifu");
-	static String dldir = mifudir.toString();
+	static String dldir = CONSTS.MIFUDIR.toString();
 	
 	private static void addSomething(Component comp, String type, int x, int y, int width){
 		if(type.equalsIgnoreCase("button")){
@@ -40,22 +38,22 @@ public class MIFU {
 	}
 	
 	public static void main(String[] args){
-		JFrame frame = new JFrame("MIFU");
+		JFrame frame = new JFrame("MIFU "+CONSTS.MIFUV);
 		progress.setStringPainted(true);
 		progress.setString("Click download to begin");
 		
-		selectedModlist = new File(mifudir+"/modlist/modlist.txt");
+		selectedModlist = new File(CONSTS.MIFUDIR+"/modlist/modlist.txt");
 		System.out.println("Default Selected: "+selectedModlist);
 		label.setText("Default Selected: "+selectedModlist);
-		dldir = mifudir.toString();
+		dldir = CONSTS.MIFUDIR.toString();
 		System.out.println("Default Selected: "+dldir);
 		label2.setText("Default Selected: "+dldir);
 		
-		if (!mifudir.exists()){
-			mifudir.mkdir();
-			File modlists = new File(mifudir.toString()+"/modlist");
+		if (!CONSTS.MIFUDIR.exists()){
+			CONSTS.MIFUDIR.mkdir();
+			File modlists = new File(CONSTS.MIFUDIR.toString()+"/modlist");
 			modlists.mkdir();
-			File mods = new File(mifudir.toString()+"/mods");
+			File mods = new File(CONSTS.MIFUDIR.toString()+"/mods");
 			mods.mkdir();
 			Download.downloadfile("http://deciliter.bloccrew.com/modlist.txt", "/modlist/modlist.txt");
 			System.out.println("MIFU Directory created");
@@ -73,7 +71,7 @@ public class MIFU {
 		frame.setSize(500,200);
 		frame.setVisible(true);
 		
-		System.out.println(mifudir);
+		System.out.println(CONSTS.MIFUDIR);
 	}
 
 }
