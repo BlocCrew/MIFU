@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MIFU {
-
+	//TODO: Check why files aren't downloading
 	static File selectedModlist;
 	static ButtonActionListener bal = new ButtonActionListener();
 	static JPanel panel = new JPanel(new GridBagLayout());
