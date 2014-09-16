@@ -35,12 +35,15 @@ public class DList {
 			    	Download.downloadfile("http://files.minecraftforge.net/minecraftforge/minecraftforge-installer-"+save+".jar", "/forge-installer-"+save+".jar"); //Download the correct forge installer
 			    	System.out.println("Downloaded: Minecraft forge version: "+save);
 			    } else {
-				    Download.downloadfile(link, save); //Download the mod
-					System.out.println("Downloaded: " + currmod + "/" + totalmods);
-				    MIFU.progress.setString("Downloaded: " + currmod + "/" + totalmods); //Sets the text on the progressbar
-				    MIFU.progress.setValue(currmod); //Set the progressbar to how many mods have been downloaded
-			    }
+				    Download.downloadfile(link, save); //Download the mod}
+				}
 			    currmod++; //Go on to the next mod
+			    MIFU.progress.setValue(currmod); //Set the progressbar to how many mods have been downloaded
+				System.out.println("Downloaded: " + currmod + "/" + totalmods);
+			    MIFU.progress.setString("Downloaded: " + currmod + "/" + totalmods); //Sets the text on the progressbar
+			    if(currmod==totalmods){
+			    	MIFU.progress.setString("Done!");
+			    }
 			}
 			cfgFile.close(); //Close the file
 		} catch (IOException e) {

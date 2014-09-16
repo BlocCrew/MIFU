@@ -15,7 +15,6 @@ import javax.swing.JProgressBar;
 public class MIFU {
 	
 	static File selectedModlist; //Path to the selected modlist
-	static ButtonActionListener bal = new ButtonActionListener(); //Button action listener
 	static JPanel panel = new JPanel(new GridBagLayout()); //Panel holds GUI elements
 	static JLabel list = new JLabel("No list chosen"); //Displays chosen modlist
 	static JLabel dir = new JLabel("No dir chosen"); //Displays chosen dir
@@ -23,13 +22,14 @@ public class MIFU {
 	static JButton chdir = new JButton("Choose dir"); //Choose dir button
 	static JButton dlmods = new JButton("Download"); //Download button
 	static JProgressBar progress = new JProgressBar(0,100); //Progressbar
-	static GridBagConstraints c = new GridBagConstraints(); //Layout stuff
 	static String dldir = CONSTS.MIFUDIR.toString(); //Download dir
 	
 	private static void addSomething(Component comp, String type, int x, int y, int width){ //adds a component to the GUI
 		if(type.equalsIgnoreCase("button")){ //If the component to be added is considered a button
+			ButtonActionListener bal = new ButtonActionListener(); //Button action listener
 			((AbstractButton) comp).addActionListener(bal.act); //Add the action listener to it
 		}
+		GridBagConstraints c = new GridBagConstraints(); //Layout stuff
 		c.fill = GridBagConstraints.HORIZONTAL; //Fills the cell in the layout
 		c.gridx = x; //X position in the layout
 		c.gridy = y; //Y position in the layout
@@ -56,7 +56,7 @@ public class MIFU {
 			File modlists = new File(CONSTS.MIFUDIR.toString()+"/modlist"); //Defines the default modlist folder
 			modlists.mkdir(); //Creates the default modlist folder
 			File mods = new File(CONSTS.MIFUDIR.toString()+"/mods"); //Defines the default mods folder
-			mods.mkdir(); //Creates the defaukt mods folder
+			mods.mkdir(); //Creates the default mods folder
 			Download.downloadfile("http://deciliter.bloccrew.com/modlist.txt", "/modlist/modlist.txt"); //Downloads our default modlist.txt
 			System.out.println("MIFU Directory created");
 		}
