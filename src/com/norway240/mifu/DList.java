@@ -9,50 +9,50 @@ import java.io.LineNumberReader;
 public class DList {
 	
 	public static void dlModlist(File modlist) throws InterruptedException, IOException{
-		FileReader fr = new FileReader(modlist);
-		LineNumberReader lnr = new LineNumberReader(fr);
-		int totalmods = 0;
-        while (lnr.readLine() != null){
+		FileReader fr = new FileReader(modlist); //Opens the selected modlist
+		LineNumberReader lnr = new LineNumberReader(fr); //Used to read the modlist
+		int totalmods = 0; //Start the mod counting at 0 of course
+        while (lnr.readLine() != null){ //Count the amount of mods in the modlist
          	totalmods++;
         }
-        lnr.close();
+        lnr.close(); //Closes the line number reader because it is not longer needed
         System.out.println("Reading modlist");
         System.out.println("Total number of mods to download: " + totalmods);
 	    System.out.println("Directory set to: "+MIFU.dldir);
-	    MIFU.progress.setMaximum(totalmods);
+	    MIFU.progress.setMaximum(totalmods); //Set the max of the progressbar to how many mods there are to download
         
 		try {
-			BufferedReader cfgFile = new BufferedReader(new FileReader(modlist));
-			String line = null;
-			int currmod = 0;
-			new File(MIFU.dldir.toString()).mkdirs();
-			while ((line = cfgFile.readLine()) != null) {
-				line.trim();
-			    String [] modlst = line.split(","); 
-			    String link = modlst[0];
-			    String save = modlst[1];
-			    if (link.equalsIgnoreCase("forge")) {
-			    	Download.downloadfile("http://files.minecraftforge.net/minecraftforge/minecraftforge-installer-"+save+".jar", "/forge-installer-"+save+".jar");
+			BufferedReader cfgFile = new BufferedReader(new FileReader(modlist)); //Used to read the modlist
+			String line = null; //The line of the modlist it is on
+			int currmod = 0; //The current mod it is downloading
+			new File(MIFU.dldir.toString()).mkdirs(); //Creates the path to where it will download if it dosen't exist
+			while ((line = cfgFile.readLine()) != null) { //This loops until it reaches the end of the modlist
+				line.trim(); //Gets one line at a time
+			    String [] modlst = line.split(","); //Splits the line into 2 parts
+			    String link = modlst[0]; //The link
+			    String save = modlst[1]; //The location/filename
+			    if (link.equalsIgnoreCase("forge")) { //if the first part says forge
+			    	Download.downloadfile("http://files.minecraftforge.net/minecraftforge/minecraftforge-installer-"+save+".jar", "/forge-installer-"+save+".jar"); //Download the correct forge installer
 			    	System.out.println("Downloaded: Minecraft forge version: "+save);
 			    } else {
-				    Download.downloadfile(link, save);
+				    Download.downloadfile(link, save); //Download the mod
 					System.out.println("Downloaded: " + currmod + "/" + totalmods);
-				    MIFU.progress.setString("Downloaded: " + currmod + "/" + totalmods);
-				    MIFU.progress.setValue(currmod);
+				    MIFU.progress.setString("Downloaded: " + currmod + "/" + totalmods); //Sets the text on the progressbar
+				    MIFU.progress.setValue(currmod); //Set the progressbar to how many mods have been downloaded
 			    }
-			    currmod++;
+			    currmod++; //Go on to the next mod
 			}
-				cfgFile.close();
-			} catch (IOException e) {
-				System.out.println("Unexpected File IO Error");
-			}
+			cfgFile.close(); //Close the file
+		} catch (IOException e) {
+			System.out.println("Unexpected File IO Error");
+		}
 
-		boolean configcheck = new File(CONSTS.MIFUDIR+"/config.zip").isFile();
-	    if(configcheck) {
+		boolean configcheck = new File(CONSTS.MIFUDIR+"/config.zip").isFile(); //Check if there is a config.zip
+	    if(configcheck) { //If there is
 	    	System.out.println("Extracting config.zip");
-	    	File configfolder = new File(CONSTS.MIFUDIR+"/config");
-	    	configfolder.mkdir();
-	    	Extract.ExtractZipFile(CONSTS.MIFUDIR+"/config.zip", CONSTS.MIFUDIR+"/config/");
+	    	File configfolder = new File(CONSTS.MIFUDIR+"/config"); //Define a config folder
+	    	configfolder.mkdir(); //Create the config folder
+	    	Extract.ExtractZipFile(CONSTS.MIFUDIR+"/config.zip", CONSTS.MIFUDIR+"/config/"); //Extract the zip to it
 	    	Thread.sleep(1000);
 	    }
 	}

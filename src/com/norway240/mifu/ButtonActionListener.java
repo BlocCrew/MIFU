@@ -10,35 +10,34 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class ButtonActionListener {
 	ActionListener act = new ActionListener(){
 		public void actionPerformed(ActionEvent e){
-			if(e.getSource()==MIFU.chmods){
+			if(e.getSource()==MIFU.chmods){ //If the "Choose modlist" button was clicked
 				System.out.println("CHOOSE");
-				JFileChooser chooser = new JFileChooser("Choose a modlist");
-			    FileNameExtensionFilter filter = new FileNameExtensionFilter(
-			        "Modlist (.txt)", "txt");
-			    chooser.setFileFilter(filter);
-			    int returnVal = chooser.showOpenDialog(chooser);
-			    if(returnVal == JFileChooser.APPROVE_OPTION) {
-			    	MIFU.selectedModlist = chooser.getSelectedFile().getAbsoluteFile();
+				JFileChooser chooser = new JFileChooser("Choose a modlist"); //Create a new filechooser window
+			    FileNameExtensionFilter filter = new FileNameExtensionFilter("Modlist (.txt)", "txt"); //Only allow .txt files
+			    chooser.setFileFilter(filter); //Add the filter of only .txt files to the filechooser window
+			    int returnVal = chooser.showOpenDialog(chooser); //Opens the dialog and waits for the user to open a file
+			    if(returnVal == JFileChooser.APPROVE_OPTION) { //If the choose to open a file and not cancel
+			    	MIFU.selectedModlist = chooser.getSelectedFile().getAbsoluteFile(); //Set the selected modlist to what they chose
 					System.out.println("Chosen: "+chooser.getSelectedFile().getAbsolutePath());
-					MIFU.label.setText("Selected: "+chooser.getSelectedFile().getAbsolutePath());
+					MIFU.list.setText("Selected: "+chooser.getSelectedFile().getAbsolutePath());
 			    }
-			}else if(e.getSource()==MIFU.chdir){
+			}else if(e.getSource()==MIFU.chdir){ //If the "Choose dir" button was clicked
 				System.out.println("CHOOSEDIR");
-				JFileChooser chooser = new JFileChooser("Choose a dir");
-				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-			    int returnVal = chooser.showOpenDialog(chooser);
-			    if(returnVal == JFileChooser.APPROVE_OPTION) {
-			    	MIFU.dldir = chooser.getSelectedFile().getAbsolutePath();
+				JFileChooser chooser = new JFileChooser("Choose a dir"); //Create a new filechooser window
+				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); //Only allow choosing directories
+			    int returnVal = chooser.showOpenDialog(chooser); //Opens the window and waits for the user to find a dir
+			    if(returnVal == JFileChooser.APPROVE_OPTION) { //If they open a dir
+			    	MIFU.dldir = chooser.getSelectedFile().getAbsolutePath(); //Set the download directory to that dir
 					System.out.println("Chosen: "+chooser.getSelectedFile().getAbsolutePath());
-					MIFU.label2.setText("Selected: "+chooser.getSelectedFile().getAbsolutePath());
+					MIFU.dir.setText("Selected: "+chooser.getSelectedFile().getAbsolutePath());
 					chooser.getSelectedFile().getAbsoluteFile().mkdirs();
-					File modsfolder = new File(chooser.getSelectedFile().getAbsolutePath()+"/mods");
-					modsfolder.mkdir();
+					File modsfolder = new File(chooser.getSelectedFile().getAbsolutePath()+"/mods"); //Create a mods folder (There has been an issue with this not creating otherwise)
+					modsfolder.mkdir(); //Creates the mods folder inside the dir the user selected
 			    }
-			}else if(e.getSource()==MIFU.dlmods){
+			}else if(e.getSource()==MIFU.dlmods){ //If the clicked the "Download" button
 				System.out.println("DOWNLOAD");
 				//MIFU.progress.setIndeterminate(true);
-				new Thread(new DThread()).start();
+				new Thread(new DThread()).start(); //Runs the process of downloading mods
 			}
 		}
 	};
