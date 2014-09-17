@@ -60,7 +60,7 @@ public class MIFU {
 			File modlists = new File(CONSTS.MIFUDIR.toString()+"/modlist"); 							//Defines the default modlist folder
 			modlists.mkdir(); 																			//Creates the default modlist folder
 			File mods = new File(CONSTS.MIFUDIR.toString()+"/mods"); 									//Defines the default mods folder
-			mods.mkdir(); //Creates the default mods folder
+			mods.mkdir(); 																				//Creates the default mods folder
 			Download.downloadfile("http://deciliter.bloccrew.com/modlist.txt", "/modlist/modlist.txt"); //Downloads our default modlist.txt
 			System.out.println("MIFU Directory created");
 		}
