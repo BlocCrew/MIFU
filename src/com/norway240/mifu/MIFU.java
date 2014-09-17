@@ -18,6 +18,7 @@ public class MIFU {
 	static JPanel panel = new JPanel(new GridBagLayout()); 												//Panel holds GUI elements
 	static JLabel list = new JLabel("No list chosen"); 													//Displays chosen modlist
 	static JLabel dir = new JLabel("No dir chosen"); 													//Displays chosen dir
+	static JLabel downloading = new JLabel();															//Displays what mod it is downloading
 	static JButton chmods = new JButton("Choose modlist"); 												//Choose modlist button
 	static JButton chdir = new JButton("Choose dir"); 													//Choose dir button
 	static JButton dlmods = new JButton("Download"); 													//Download button
@@ -74,6 +75,7 @@ public class MIFU {
 		addSomething(dir,"label",0,3,1);
 		addSomething(dlmods,"button",0,4,1);
 		addSomething(progress,"progress",0,5,2);
+		addSomething(downloading,"label",0,6,2);
 		frame.add(panel);
 		
 		/*

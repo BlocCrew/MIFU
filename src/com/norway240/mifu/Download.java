@@ -4,7 +4,6 @@ package com.norway240.mifu;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Download {
@@ -14,6 +13,8 @@ public class Download {
 		
 		System.out.println("URL: "+ DLURL);
 		System.out.println("FILE: "+ DLOC);
+		
+		MIFU.downloading.setText(DLFILE);
 		
 		try {
 	        long startTime = System.currentTimeMillis();
@@ -34,10 +35,10 @@ public class Download {
 	        System.out.println("Downloaded: "+DLOC+ (new Integer(totalBytesRead).toString()) + " bytes read (" + (new Long(endTime - startTime).toString()) + " millseconds).\n");
 	        writer.close();
 	        reader.close();
-			}catch (MalformedURLException e) {
-				e.printStackTrace();
 			}catch (IOException e) {
 				e.printStackTrace();
+				MIFU.downloading.setText(DLFILE+" Error downloading, Trying again");
+				downloadfile(DLURL,DLFILE);
 		}
 	}
 }
