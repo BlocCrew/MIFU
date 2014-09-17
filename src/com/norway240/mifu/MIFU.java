@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
 public class MIFU {
-	
+	//TODO: Recreate the GUI
 	static File selectedModlist; 																		//Path to the selected modlist
 	static JPanel panel = new JPanel(new GridBagLayout()); 												//Panel holds GUI elements
 	static JLabel list = new JLabel("No list chosen"); 													//Displays chosen modlist
