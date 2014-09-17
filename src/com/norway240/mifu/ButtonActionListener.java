@@ -28,10 +28,12 @@ public class ButtonActionListener {
 			    int returnVal = chooser.showOpenDialog(chooser); 										//Opens the window and waits for the user to find a dir
 			    if(returnVal == JFileChooser.APPROVE_OPTION) { 											//If they open a dir
 			    	MIFU.dldir = chooser.getSelectedFile().getAbsolutePath(); 							//Set the download directory to that dir
-					System.out.println("Chosen: "+chooser.getSelectedFile().getAbsolutePath());
-					MIFU.dir.setText("Selected: "+chooser.getSelectedFile().getAbsolutePath());
-					chooser.getSelectedFile().getAbsoluteFile().mkdirs();
-					File modsfolder = new File(chooser.getSelectedFile().getAbsolutePath()+"/mods"); 	//Create a mods folder (There has been an issue with this not creating otherwise)
+			    	File chosendirfile = chooser.getSelectedFile().getAbsoluteFile();					//Creates a variable chosendirfile, that contains the File of the chosen dir
+			    	String chosendir = chosendirfile.getAbsolutePath();									//Creates a variable chosendir, that contains the String of the chosen dir
+			    	System.out.println("Chosen: "+chosendir);
+					MIFU.dir.setText("Selected: "+chosendir);
+					chosendirfile.mkdirs();																//Makes the path leading to the selected folder
+					File modsfolder = new File(chosendir+"/mods"); 										//Create a mods folder (There has been an issue with this not creating otherwise)
 					modsfolder.mkdir(); 																//Creates the mods folder inside the dir the user selected
 			    }
 			}else if(e.getSource()==MIFU.dlmods){ 														//If the clicked the "Download" button
