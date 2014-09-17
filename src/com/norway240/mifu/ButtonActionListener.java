@@ -5,23 +5,35 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class ButtonActionListener {
 	ActionListener act = new ActionListener(){
 		public void actionPerformed(ActionEvent e){
 			JFileChooser chooser = new JFileChooser();
-			if(e.getSource()==MIFU.chmods){ 															//If the "Choose modlist" button was clicked
+			if(e.getSource()==MIFU.chmods){ 															//If the "Choose modlist" button was clicked		
 				System.out.println("CHOOSE");
-				chooser.setDialogTitle("Choose a modlist");
-			    FileNameExtensionFilter filter = new FileNameExtensionFilter("Modlist (.txt)", "txt"); 	//Only allow .txt files
-			    chooser.setFileFilter(filter); 															//Add the filter of only .txt files to the filechooser window
-			    int returnVal = chooser.showOpenDialog(chooser); 										//Opens the dialog and waits for the user to open a file
-			    if(returnVal == JFileChooser.APPROVE_OPTION) { 											//If the choose to open a file and not cancel
-			    	MIFU.selectedModlist = chooser.getSelectedFile().getAbsoluteFile(); 				//Set the selected modlist to what they chose
-					System.out.println("Chosen: "+chooser.getSelectedFile().getAbsolutePath());
-					MIFU.list.setText("Selected: "+chooser.getSelectedFile().getAbsolutePath());
-			    }
+				String modlistlink = JOptionPane.showInputDialog("If you want to download a modlist, you can do so here\n"
+						+ "Just enter the link to that modlist.txt\n\n"
+						+ "If you just want to find a modlist.txt on your computer\n"
+						+ "Just click cancel and you can do that next");
+				if(modlistlink!=null){
+					Download.downloadfile(modlistlink, "/modlist/usermodlist.txt");
+					MIFU.selectedModlist = new File(MIFU.dldir+"/modlist/usermodlist.txt"); 			//Set the selected modlist to what entered
+					System.out.println("Chosen: "+modlistlink);
+					MIFU.list.setText("Selected: "+modlistlink);
+				}else{
+					chooser.setDialogTitle("Choose a modlist");
+				    FileNameExtensionFilter filter = new FileNameExtensionFilter("Modlist (.txt)", "txt"); 	//Only allow .txt files
+				    chooser.setFileFilter(filter); 															//Add the filter of only .txt files to the filechooser window
+				    int returnVal = chooser.showOpenDialog(chooser); 										//Opens the dialog and waits for the user to open a file
+				    if(returnVal == JFileChooser.APPROVE_OPTION) { 											//If the choose to open a file and not cancel
+				    	MIFU.selectedModlist = chooser.getSelectedFile().getAbsoluteFile(); 				//Set the selected modlist to what they chose
+						System.out.println("Chosen: "+chooser.getSelectedFile().getAbsolutePath());
+						MIFU.list.setText("Selected: "+chooser.getSelectedFile().getAbsolutePath());
+				    }
+				}
 			}else if(e.getSource()==MIFU.chdir){ 														//If the "Choose dir" button was clicked
 				System.out.println("CHOOSEDIR");
 				chooser.setDialogTitle("Choose a dir");
