@@ -37,7 +37,13 @@ public class Download {
 	        reader.close();
 			}catch (IOException e) {
 				e.printStackTrace();
-				MIFU.downloading.setText(DLFILE+" Error downloading, Trying again");
+				MIFU.error.setText("Error downloading, Trying again...");
+				try {
+					Thread.sleep(5000);
+					MIFU.error.setText("");
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
 				downloadfile(DLURL,DLFILE);
 		}
 	}
