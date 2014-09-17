@@ -26,7 +26,7 @@ public class MIFU {
 	static JProgressBar progress = new JProgressBar(0,100); 											//Progressbar
 	static String dldir = CONSTS.MIFUDIR.toString(); 													//Download dir
 	
-	private static void addSomething(Component comp, String type, int x, int y, int width){				//adds a component to the GUI
+	private static void addSomething(Component comp, String type, int x, int y, int width, int height){ //adds a component to the GUI
 		if(type.equalsIgnoreCase("button")){ 															//If the component to be added is considered a button
 			ButtonActionListener bal = new ButtonActionListener(); 										//Button action listener
 			((AbstractButton) comp).addActionListener(bal.act); 										//Add the action listener to it
@@ -35,11 +35,17 @@ public class MIFU {
 		c.fill = GridBagConstraints.HORIZONTAL; 														//Fills the cell in the layout
 		c.gridx = x; 																					//X position in the layout
 		c.gridy = y; 																					//Y position in the layout
-		c.gridwidth = width; 																			//How many cells to span across
+		c.gridwidth = width; 																			//How many cells to span horizontal
+		c.gridheight = height;																			//How many cells to span vertical
 		panel.add(comp,c); 																				//Add the component to the panel
 	}
 	
+	private static void remSomething(Component comp){
+		panel.remove(comp);
+	}
+	
 	public static void main(String[] args){ 															//The actual program
+		Updater.updateMIFU();
 		JFrame frame = new JFrame("MIFU "+CONSTS.MIFUV); 												//The GUI
 		progress.setStringPainted(true); 																//So the progressbar can have text on it
 		progress.setString("Click download to begin"); 													//Info on the bar
@@ -67,22 +73,16 @@ public class MIFU {
 			System.out.println("MIFU Directory created");
 		}
 		
-		/*
-		 * Add things to the GUI
-		 */
-		addSomething(chmods,"button",0,0,1);
-		addSomething(list,"label",0,1,1);
-		addSomething(chdir,"button",0,2,1);
-		addSomething(dir,"label",0,3,1);
-		addSomething(dlmods,"button",0,4,1);
-		addSomething(progress,"progress",0,5,2);
-		addSomething(downloading,"label",0,6,2);
-		addSomething(error,"label",0,7,2);
+		addSomething(chmods,"button",0,0,1,1);
+		addSomething(list,"label",0,1,1,1);
+		addSomething(chdir,"button",0,2,1,1);
+		addSomething(dir,"label",0,3,1,1);
+		addSomething(dlmods,"button",0,4,1,1);
+		addSomething(progress,"progress",0,5,2,1);
+		addSomething(downloading,"label",0,6,2,1);
+		addSomething(error,"label",0,7,2,1);
 		frame.add(panel);
 		
-		/*
-		 * Set GUI defaults
-		 */
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(500,200);
 		frame.setVisible(true); 																		//Display the GUI
