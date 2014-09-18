@@ -100,9 +100,9 @@ public class MIFU {
 		addSomething(mifudesc,"label",0,0,4,1);
 		addSomething(Box.createHorizontalStrut(20),"spacer",1,0,1,10);
 		addSomething(modslbl,"label",5,0,1,1);
-		addSomething(scroll,"textbox",5,1,1,12);
+		addSomething(scroll,"textbox",5,2,1,11);
 		
-		addSomething(Box.createVerticalStrut(10),"spacer",0,1,4,1);
+		addSomething(Box.createVerticalStrut(10),"spacer",0,1,5,1);
 		
 		addSomething(listlbl,"label",0,2,4,1);
 		addSomething(list,"label",0,3,3,1);
@@ -134,7 +134,7 @@ public class MIFU {
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
-		frame.setSize(frame.getWidth()+5,frame.getHeight()+5);
+		frame.setSize(frame.getWidth()+10,frame.getHeight()+10);
 		frame.setVisible(true); 																		//Display the GUI
 		
 		System.out.println(CONSTS.MIFUDIR);

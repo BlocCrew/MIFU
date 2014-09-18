@@ -16,14 +16,14 @@ public class Updater {
 	}
 	
 	private static void updateMIFU(){
-		Download.downloadfile("http://dl.norway240.com/MIFU.jar", System.getProperty("user.dir"), "/MIFU.jar");
+		Download.downloadfile("http://filez.norway240.com/MIFU.jar", System.getProperty("user.dir"), "/MIFU.jar");
 		restartMIFU();
 	}
 	
 	public static void checkForMIFUUpdate(){
 		//Check latest version available
 		String latest = null;
-		Download.downloadfile("http://dl.norway240.com/mifuv.txt", CONSTS.MIFUDIRS, "/version.txt");
+		Download.downloadfile("http://filez.norway240.com/mifuv.txt", CONSTS.MIFUDIRS, "/version.txt");
 		try {
 			File file = new File(CONSTS.MIFUDIR+"/version.txt");
 			FileReader fileReader = new FileReader(file);
