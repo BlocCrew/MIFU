@@ -3,6 +3,8 @@ package com.norway240.mifu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -18,12 +20,14 @@ public class ButtonActionListener {
 						+ "Just enter the link to that modlist.txt\n\n"
 						+ "If you just want to find a modlist.txt on your computer\n"
 						+ "Just click cancel and you can do that next");
-				if(modlistlink!=null){
-					Download.downloadfile(modlistlink, CONSTS.MIFUDIRS, "/modlist/usermodlist.txt");
-					MIFU.selectedModlist = new File(CONSTS.MIFUDIR+"/modlist/usermodlist.txt"); 			//Set the selected modlist to what entered
+				try {
+					URL mlink = new URL(modlistlink);
+					Download.downloadfile(mlink.toString(), CONSTS.MIFUDIRS, "/modlist/usermodlist.txt");
+					MIFU.selectedModlist = new File(CONSTS.MIFUDIR+"/modlist/usermodlist.txt");
 					System.out.println("Chosen: "+modlistlink);
 					MIFU.list.setText(modlistlink);
-				}else{
+				} catch (MalformedURLException e1) {
+					e1.printStackTrace();
 					chooser.setDialogTitle("Choose a modlist");
 				    FileNameExtensionFilter filter = new FileNameExtensionFilter("Modlist (.txt)", "txt"); 	//Only allow .txt files
 				    chooser.setFileFilter(filter); 															//Add the filter of only .txt files to the filechooser window

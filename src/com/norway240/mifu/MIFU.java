@@ -82,7 +82,7 @@ public class MIFU {
 		 * GUI
 		 */
 		JLabel mifudesc = new JLabel("Mod Installer From URL");
-		JLabel modslbl = new JLabel("Mods:");
+		JLabel modslbl = new JLabel("Downloads:");
 		JLabel listlbl = new JLabel("Modlist:");
 		JLabel dirlbl = new JLabel("Directory:");
 		JScrollPane scroll = new JScrollPane(modsDisplay);
