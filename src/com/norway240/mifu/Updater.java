@@ -25,18 +25,18 @@ public class Updater {
 			e.printStackTrace();
 		}
 		//Compare versions
-		String[] lversion = latest.split(".");
-		System.out.println(lversion[1]);
-		
-	    /*int lmajor = Integer.parseInt(lversion[0]);
+		String[] lversion = latest.split("\\.");
+		int lmajor = Integer.parseInt(lversion[0]);
 	    int lminor = Integer.parseInt(lversion[1]);
 	    int lpatch = Integer.parseInt(lversion[2]);
 	    if(lmajor > CONSTS.MAJOR){
-	    	System.out.println("new major");
+	    	System.out.println("NEW MAJOR");
 	    }else if(lminor > CONSTS.MINOR){
-	    	System.out.println("new major");
+	    	System.out.println("NEW MINOR");
 	    }else if(lpatch > CONSTS.PATCH){
-	    	System.out.println("new major");
-	    }*/
+	    	System.out.println("NEW PATCH");
+	    }else{
+	    	System.out.println("MIFU IS UP TO DATE");
+	    }
 	}
 }

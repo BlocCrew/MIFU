@@ -15,6 +15,7 @@ public class Download {
 		System.out.println("FILE: "+ DLOC);
 		
 		MIFU.modsDisplay.append(DLFILE+"\n");
+		MIFU.modsDisplay.setCaretPosition(MIFU.modsDisplay.getDocument().getLength());
 		
 		try {
 	        long startTime = System.currentTimeMillis();
@@ -32,7 +33,7 @@ public class Download {
 	           totalBytesRead += bytesRead;
 	        }
 	        long endTime = System.currentTimeMillis();
-	        System.out.println("Downloaded: "+DLOC+ (new Integer(totalBytesRead).toString()) + " bytes read (" + (new Long(endTime - startTime).toString()) + " millseconds).\n");
+	        System.out.println("Downloaded: "+DLOC+ " " + (new Integer(totalBytesRead).toString()) + " bytes read (" + (new Long(endTime - startTime).toString()) + " millseconds).");
 	        writer.close();
 	        reader.close();
 			}catch (IOException e) {

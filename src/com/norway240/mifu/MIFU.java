@@ -26,8 +26,8 @@ public class MIFU {
 	static JTextArea list = new JTextArea("No list chosen",4,4); 													//Displays chosen modlist
 	static JTextArea dir = new JTextArea("No dir chosen",4,4); 													//Displays chosen dir
 	static JLabel error = new JLabel();
-	static JButton chmods = new JButton("Choose modlist"); 												//Choose modlist button
-	static JButton chdir = new JButton("Choose dir"); 													//Choose dir button
+	static JButton chmods = new JButton("CHOOSE MODLIST"); 												//Choose modlist button
+	static JButton chdir = new JButton("CHOOSE DIR"); 													//Choose dir button
 	static JButton dlmods = new JButton("Download"); 													//Download button
 	static JProgressBar progress = new JProgressBar(0,100); 											//Progressbar
 	static String dldir = CONSTS.MIFUDIR.toString(); 													//Download dir
@@ -49,7 +49,7 @@ public class MIFU {
 	}
 	
 	public static void main(String[] args){ 															//The actual program
-		//Updater.updateMIFU();
+		Updater.updateMIFU();
 		JFrame frame = new JFrame("MIFU "+CONSTS.MIFUV); 												//The GUI
 		progress.setStringPainted(true); 																//So the progressbar can have text on it
 		progress.setString("Click download to begin"); 													//Info on the bar

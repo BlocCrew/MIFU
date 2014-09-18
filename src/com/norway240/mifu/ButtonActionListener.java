@@ -22,7 +22,7 @@ public class ButtonActionListener {
 					Download.downloadfile(modlistlink, "/modlist/usermodlist.txt");
 					MIFU.selectedModlist = new File(MIFU.dldir+"/modlist/usermodlist.txt"); 			//Set the selected modlist to what entered
 					System.out.println("Chosen: "+modlistlink);
-					MIFU.list.setText("Selected: "+modlistlink);
+					MIFU.list.setText(modlistlink);
 				}else{
 					chooser.setDialogTitle("Choose a modlist");
 				    FileNameExtensionFilter filter = new FileNameExtensionFilter("Modlist (.txt)", "txt"); 	//Only allow .txt files
@@ -30,8 +30,8 @@ public class ButtonActionListener {
 				    int returnVal = chooser.showOpenDialog(chooser); 										//Opens the dialog and waits for the user to open a file
 				    if(returnVal == JFileChooser.APPROVE_OPTION) { 											//If the choose to open a file and not cancel
 				    	MIFU.selectedModlist = chooser.getSelectedFile().getAbsoluteFile(); 				//Set the selected modlist to what they chose
-						System.out.println("Chosen: "+chooser.getSelectedFile().getAbsolutePath());
-						MIFU.list.setText("Selected: "+chooser.getSelectedFile().getAbsolutePath());
+						System.out.println("Chosen: "+MIFU.selectedModlist.toString());
+						MIFU.list.setText(MIFU.selectedModlist.toString());
 				    }
 				}
 			}else if(e.getSource()==MIFU.chdir){ 														//If the "Choose dir" button was clicked
@@ -42,7 +42,7 @@ public class ButtonActionListener {
 			    if(returnVal == JFileChooser.APPROVE_OPTION) { 											//If they open a dir
 			    	MIFU.dldir = chooser.getSelectedFile().getAbsolutePath(); 							//Set the download directory to that dir
 					System.out.println("Chosen: "+chooser.getSelectedFile().getAbsolutePath());
-					MIFU.dir.setText("Selected: "+chooser.getSelectedFile().getAbsolutePath());
+					MIFU.dir.setText(chooser.getSelectedFile().getAbsolutePath());
 					chooser.getSelectedFile().getAbsoluteFile().mkdirs();
 					File modsfolder = new File(chooser.getSelectedFile().getAbsolutePath()+"/mods"); 	//Create a mods folder (There has been an issue with this not creating otherwise)
 					modsfolder.mkdir(); 																//Creates the mods folder inside the dir the user selected

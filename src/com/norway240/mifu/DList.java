@@ -43,7 +43,6 @@ public class DList {
 			    MIFU.progress.setString("Downloaded: " + currmod + "/" + totalmods); 			//Sets the text on the progressbar
 			    if(currmod==totalmods){
 			    	MIFU.progress.setString("Done!");
-		    		MIFU.modsDisplay.append("DONE!");
 					MIFU.addSomething(MIFU.dlmods,"button",0,12,3,1);
 			    }
 			}
