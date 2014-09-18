@@ -1,5 +1,6 @@
 package com.norway240.mifu;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -22,9 +23,8 @@ public class MIFU {
 	static Font font = new Font("Verdana", style, 18);
 	static File selectedModlist; 																		//Path to the selected modlist
 	static JPanel panel = new JPanel(new GridBagLayout()); 												//Panel holds GUI elements
-	static JLabel list = new JLabel("No list chosen"); 													//Displays chosen modlist
-	static JLabel dir = new JLabel("No dir chosen"); 													//Displays chosen dir
-	static JLabel downloading = new JLabel();															//Displays what mod it is downloading
+	static JTextArea list = new JTextArea("No list chosen",4,4); 													//Displays chosen modlist
+	static JTextArea dir = new JTextArea("No dir chosen",4,4); 													//Displays chosen dir
 	static JLabel error = new JLabel();
 	static JButton chmods = new JButton("Choose modlist"); 												//Choose modlist button
 	static JButton chdir = new JButton("Choose dir"); 													//Choose dir button
@@ -53,10 +53,11 @@ public class MIFU {
 		JFrame frame = new JFrame("MIFU "+CONSTS.MIFUV); 												//The GUI
 		progress.setStringPainted(true); 																//So the progressbar can have text on it
 		progress.setString("Click download to begin"); 													//Info on the bar
-		
-		/*
-		 * Setting the default modlist and directory
-		 */
+		list.setEditable(false);
+		list.setLineWrap(true);
+		dir.setEditable(false);
+		dir.setLineWrap(true);
+
 		selectedModlist = new File(CONSTS.MIFUDIR+"/modlist/modlist.txt");
 		System.out.println("Default Selected: "+selectedModlist);
 		list.setText(selectedModlist.toString());
@@ -77,6 +78,9 @@ public class MIFU {
 			System.out.println("MIFU Directory created");
 		}
 		
+		/*
+		 * GUI
+		 */
 		JLabel mifudesc = new JLabel("Mod Installer From URL");
 		JLabel modslbl = new JLabel("Mods:");
 		JLabel listlbl = new JLabel("Modlist:");
@@ -87,6 +91,9 @@ public class MIFU {
 		modslbl.setFont(font);
 		listlbl.setFont(font);
 		dirlbl.setFont(font);
+		Color color = new Color(frame.getBackground().getRGB());
+		list.setBackground(color);
+		dir.setBackground(color);
 		
 		addSomething(mifudesc,"label",0,0,4,1);
 		addSomething(Box.createHorizontalStrut(20),"spacer",1,0,1,10);
@@ -96,12 +103,12 @@ public class MIFU {
 		addSomething(Box.createVerticalStrut(10),"spacer",0,1,4,1);
 		
 		addSomething(listlbl,"label",0,2,4,1);
-		addSomething(list,"label",0,3,4,1);
+		addSomething(list,"label",0,3,3,1);
 		
 		addSomething(Box.createVerticalStrut(10),"spacer",0,4,4,1);
 		
 		addSomething(dirlbl,"label",0,5,4,1);
-		addSomething(dir,"label",0,6,4,1);
+		addSomething(dir,"label",0,6,3,1);
 		
 		addSomething(Box.createVerticalStrut(30),"spacer",0,7,4,1);
 		
@@ -118,24 +125,14 @@ public class MIFU {
 		
 		addSomething(dlmods,"button",0,12,3,1);
 		
-		//modsDisplay.append("Mods:\n");
-		//addSomething(modsDisplay,"textbox",1,0,1,1);
+		addSomething(Box.createVerticalStrut(10),"spacer",0,13,4,1);
+
+		addSomething(progress,"progressbar",0,14,6,1);
 		
-		
-		/*addSomething(chmods,"button",0,0,1,1);
-		addSomething(list,"label",0,1,1,1);
-		addSomething(chdir,"button",0,2,1,1);
-		addSomething(dir,"label",0,3,1,1);
-		addSomething(dlmods,"button",0,4,1,1);
-		addSomething(progress,"progress",0,5,2,1);
-		addSomething(downloading,"label",0,6,2,1);
-		addSomething(error,"label",0,7,2,1);*/
 		frame.add(panel);
-		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//frame.setSize(600,400);
 		frame.pack();
-		frame.setSize(frame.getWidth()+5, frame.getHeight()+5);
+		frame.setSize(frame.getWidth()+5,frame.getHeight()+5);
 		frame.setVisible(true); 																		//Display the GUI
 		
 		System.out.println(CONSTS.MIFUDIR);

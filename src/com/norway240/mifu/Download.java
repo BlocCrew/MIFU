@@ -14,7 +14,7 @@ public class Download {
 		System.out.println("URL: "+ DLURL);
 		System.out.println("FILE: "+ DLOC);
 		
-		MIFU.downloading.setText(DLFILE);
+		MIFU.modsDisplay.append(DLFILE+"\n");
 		
 		try {
 	        long startTime = System.currentTimeMillis();
