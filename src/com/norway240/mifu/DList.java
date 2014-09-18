@@ -44,6 +44,7 @@ public class DList {
 			    if(currmod==totalmods){
 			    	MIFU.progress.setString("Done!");
 			    	MIFU.downloading.setText("");
+					MIFU.addSomething(MIFU.dlmods,"button",0,12,3,1);
 			    }
 			}
 			cfgFile.close(); 																	//Close the file

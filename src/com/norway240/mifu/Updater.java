@@ -21,12 +21,12 @@ public class Updater {
 			fileReader.close();
 			latest = stringBuffer.toString();
 			System.out.println("Latest version: v"+latest);
-		} catch (IOException e) {
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
 		//Compare versions
 		String[] lversion = latest.split(".");
-		System.out.println(lversion);
+		System.out.println(lversion[1]);
 		
 	    /*int lmajor = Integer.parseInt(lversion[0]);
 	    int lminor = Integer.parseInt(lversion[1]);

@@ -49,7 +49,6 @@ public class ButtonActionListener {
 			    }
 			}else if(e.getSource()==MIFU.dlmods){ 														//If the clicked the "Download" button
 				System.out.println("DOWNLOAD");
-				//MIFU.progress.setIndeterminate(true);
 				new Thread(new DThread()).start(); 														//Runs the process of downloading mods
 			}
 		}
