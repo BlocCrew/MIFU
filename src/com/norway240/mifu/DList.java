@@ -32,10 +32,10 @@ public class DList {
 			    String link = modlst[0]; 														//The link
 			    String save = modlst[1]; 														//The location/filename
 			    if (link.equalsIgnoreCase("forge")) { 											//if the first part says forge
-			    	Download.downloadfile("http://files.minecraftforge.net/minecraftforge/minecraftforge-installer-"+save+".jar", "/forge-installer-"+save+".jar");
+			    	Download.downloadfile("http://files.minecraftforge.net/minecraftforge/minecraftforge-installer-"+save+".jar", MIFU.dldir, "/forge-installer-"+save+".jar");
 			    	System.out.println("Downloaded: Minecraft forge version: "+save); 			//Downloads the forge installer
 			    } else {
-				    Download.downloadfile(link, save); 											//Download the mod
+				    Download.downloadfile(link, MIFU.dldir, save); 											//Download the mod
 				}
 			    currmod++; 																		//Go on to the next mod
 			    MIFU.progress.setValue(currmod); 												//Set the progressbar to how many mods have been downloaded
@@ -43,7 +43,6 @@ public class DList {
 			    MIFU.progress.setString("Downloaded: " + currmod + "/" + totalmods); 			//Sets the text on the progressbar
 			    if(currmod==totalmods){
 			    	MIFU.progress.setString("Done!");
-					MIFU.addSomething(MIFU.dlmods,"button",0,12,3,1);
 			    }
 			}
 			cfgFile.close(); 																	//Close the file

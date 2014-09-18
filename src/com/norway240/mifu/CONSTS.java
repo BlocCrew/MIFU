@@ -9,4 +9,5 @@ public class CONSTS {
 	final static String MIFUV = "v"+MAJOR+"."+MINOR+"."+PATCH; 		//MIFU version
 	final static String HOMEDIR = System.getProperty("user.home"); 	//Users home dir
 	final static File MIFUDIR = new File(HOMEDIR+"/.mifu"); 		//MIFU dir
+	final static String MIFUDIRS = MIFUDIR.toString();
 }

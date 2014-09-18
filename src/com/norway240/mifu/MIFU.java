@@ -18,7 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class MIFU {
-	//TODO: Recreate the GUI
+
 	static int style = Font.PLAIN;
 	static Font font = new Font("Verdana", style, 18);
 	static File selectedModlist; 																		//Path to the selected modlist
@@ -49,7 +49,7 @@ public class MIFU {
 	}
 	
 	public static void main(String[] args){ 															//The actual program
-		Updater.updateMIFU();
+		Updater.checkForMIFUUpdate();
 		JFrame frame = new JFrame("MIFU "+CONSTS.MIFUV); 												//The GUI
 		progress.setStringPainted(true); 																//So the progressbar can have text on it
 		progress.setString("Click download to begin"); 													//Info on the bar
@@ -74,7 +74,7 @@ public class MIFU {
 			modlists.mkdir(); 																			//Creates the default modlist folder
 			File mods = new File(CONSTS.MIFUDIR.toString()+"/mods"); 									//Defines the default mods folder
 			mods.mkdir(); 																				//Creates the default mods folder
-			Download.downloadfile("http://dl.bloccrew.com/modlist.txt", "/modlist/modlist.txt"); //Downloads our default modlist.txt
+			Download.downloadfile("http://dl.bloccrew.com/modlist.txt", CONSTS.MIFUDIRS, "/modlist/modlist.txt"); //Downloads our default modlist.txt
 			System.out.println("MIFU Directory created");
 		}
 		

@@ -8,8 +8,8 @@ import java.net.URL;
 
 public class Download {
 	
-	public static void downloadfile(String DLURL, String DLFILE) { //This downloads a mod given the url and the location/filename
-		String DLOC = MIFU.dldir+DLFILE; //The dir to download to
+	public static void downloadfile(String DLURL, String DLDIR, String DLFILE) { //This downloads a mod given the url and the location/filename
+		String DLOC = DLDIR+DLFILE; //The dir to download to
 		
 		System.out.println("URL: "+ DLURL);
 		System.out.println("FILE: "+ DLOC);
@@ -45,7 +45,7 @@ public class Download {
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 				}
-				downloadfile(DLURL,DLFILE);
+				downloadfile(DLURL,DLDIR,DLFILE);
 		}
 	}
 }

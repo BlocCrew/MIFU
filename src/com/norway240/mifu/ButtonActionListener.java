@@ -19,8 +19,8 @@ public class ButtonActionListener {
 						+ "If you just want to find a modlist.txt on your computer\n"
 						+ "Just click cancel and you can do that next");
 				if(modlistlink!=null){
-					Download.downloadfile(modlistlink, "/modlist/usermodlist.txt");
-					MIFU.selectedModlist = new File(MIFU.dldir+"/modlist/usermodlist.txt"); 			//Set the selected modlist to what entered
+					Download.downloadfile(modlistlink, CONSTS.MIFUDIRS, "/modlist/usermodlist.txt");
+					MIFU.selectedModlist = new File(CONSTS.MIFUDIR+"/modlist/usermodlist.txt"); 			//Set the selected modlist to what entered
 					System.out.println("Chosen: "+modlistlink);
 					MIFU.list.setText(modlistlink);
 				}else{

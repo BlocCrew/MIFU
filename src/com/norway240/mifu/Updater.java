@@ -5,10 +5,25 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Updater {
-	public static void updateMIFU(){
+	private static void restartMIFU(){
+		try {
+			@SuppressWarnings("unused")
+			Process proc = Runtime.getRuntime().exec("java -jar MIFU.jar");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.exit(0);
+	}
+	
+	private static void updateMIFU(){
+		Download.downloadfile("http://dl.norway240.com/MIFU.jar", System.getProperty("user.dir"), "/MIFU.jar");
+		restartMIFU();
+	}
+	
+	public static void checkForMIFUUpdate(){
 		//Check latest version available
 		String latest = null;
-		Download.downloadfile("http://norway240.com/mifuv.txt", "/version.txt");
+		Download.downloadfile("http://dl.norway240.com/mifuv.txt", CONSTS.MIFUDIRS, "/version.txt");
 		try {
 			File file = new File(CONSTS.MIFUDIR+"/version.txt");
 			FileReader fileReader = new FileReader(file);
@@ -31,10 +46,13 @@ public class Updater {
 	    int lpatch = Integer.parseInt(lversion[2]);
 	    if(lmajor > CONSTS.MAJOR){
 	    	System.out.println("NEW MAJOR");
+	    	updateMIFU();
 	    }else if(lminor > CONSTS.MINOR){
 	    	System.out.println("NEW MINOR");
+	    	updateMIFU();
 	    }else if(lpatch > CONSTS.PATCH){
 	    	System.out.println("NEW PATCH");
+	    	updateMIFU();
 	    }else{
 	    	System.out.println("MIFU IS UP TO DATE");
 	    }
