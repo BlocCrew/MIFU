@@ -8,6 +8,8 @@ import java.net.URL;
 
 public class Download {
 	
+	static int tries = 0;
+	
 	public static void downloadfile(String DLURL, String DLDIR, String DLFILE) { //This downloads a mod given the url and the location/filename
 		String DLOC = DLDIR+DLFILE; //The dir to download to
 		
@@ -36,6 +38,7 @@ public class Download {
 	        System.out.println("Downloaded: "+DLOC+ " " + (new Integer(totalBytesRead).toString()) + " bytes read (" + (new Long(endTime - startTime).toString()) + " millseconds).");
 	        writer.close();
 	        reader.close();
+	        tries=0;
 			}catch (IOException e) {
 				e.printStackTrace();
 				MIFU.error.setText("Error downloading, Trying again...");
@@ -45,7 +48,15 @@ public class Download {
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 				}
-				downloadfile(DLURL,DLDIR,DLFILE);
-		}
+				tries++;
+				if(tries<3){
+					System.out.print("Trying to download again: "+tries);
+					downloadfile(DLURL,DLDIR,DLFILE);
+				}else{
+					System.out.println("Failed to download: "+DLOC);
+					MIFU.error.setText("Failed to download: "+DLOC);
+					MIFU.modsDisplay.append("Failed to download:\n"+DLOC);
+				}
+			}
 	}
 }

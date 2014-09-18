@@ -31,7 +31,7 @@ public class MIFU {
 	static JButton dlmods = new JButton("Download"); 													//Download button
 	static JProgressBar progress = new JProgressBar(0,100); 											//Progressbar
 	static String dldir = CONSTS.MIFUDIR.toString(); 													//Download dir
-	static JTextArea modsDisplay = new JTextArea(20,20);
+	static JTextArea modsDisplay = new JTextArea(20,25);
 	
 	public static void addSomething(Component comp, String type, int x, int y, int width, int height){ //adds a component to the GUI
 		if(type.equalsIgnoreCase("button")){ 															//If the component to be added is considered a button
@@ -57,6 +57,8 @@ public class MIFU {
 		list.setLineWrap(true);
 		dir.setEditable(false);
 		dir.setLineWrap(true);
+		modsDisplay.setLineWrap(true);
+		modsDisplay.setEditable(false);
 
 		selectedModlist = new File(CONSTS.MIFUDIR+"/modlist/modlist.txt");
 		System.out.println("Default Selected: "+selectedModlist);
@@ -86,7 +88,7 @@ public class MIFU {
 		JLabel listlbl = new JLabel("Modlist:");
 		JLabel dirlbl = new JLabel("Directory:");
 		JScrollPane scroll = new JScrollPane(modsDisplay);
-		modsDisplay.setEditable(false);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		mifudesc.setFont(font);
 		modslbl.setFont(font);
 		listlbl.setFont(font);
