@@ -14,6 +14,7 @@ public class ButtonActionListener {
 	ActionListener act = new ActionListener(){
 		public void actionPerformed(ActionEvent e){
 			JFileChooser chooser = new JFileChooser();
+			chooser.setCurrentDirectory(CONSTS.MIFUDIR);
 			if(e.getSource()==MIFU.chmods){ 															//If the "Choose modlist" button was clicked		
 				System.out.println("CHOOSE");
 				String modlistlink = JOptionPane.showInputDialog("If you want to download a modlist, you can do so here\n"
