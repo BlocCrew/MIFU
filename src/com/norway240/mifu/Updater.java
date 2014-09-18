@@ -8,7 +8,7 @@ public class Updater {
 	private static void restartMIFU(){
 		try {
 			@SuppressWarnings("unused")
-			Process proc = Runtime.getRuntime().exec("java -jar MIFU.jar");
+			Process proc = Runtime.getRuntime().exec("java -jar "+System.getProperty("user.dir")+"/MIFU.jar");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
