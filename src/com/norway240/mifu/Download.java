@@ -55,7 +55,6 @@ public class Download {
 				}else{
 					System.out.println("Failed to download: "+DLOC);
 					MIFU.error.setText("Failed to download: "+DLOC);
-					MIFU.modsDisplay.append("Failed to download:\n"+DLOC);
 				}
 			}
 	}
