@@ -25,13 +25,13 @@ public class MIFU {
 	static JPanel panel = new JPanel(new GridBagLayout()); 												//Panel holds GUI elements
 	static JTextArea list = new JTextArea("No list chosen",4,4); 													//Displays chosen modlist
 	static JTextArea dir = new JTextArea("No dir chosen",4,4); 													//Displays chosen dir
-	static JLabel error = new JLabel();
+	static JTextArea error = new JTextArea(2,2);
 	static JButton chmods = new JButton("CHOOSE MODLIST"); 												//Choose modlist button
 	static JButton chdir = new JButton("CHOOSE DIR"); 													//Choose dir button
 	static JButton dlmods = new JButton("Download"); 													//Download button
 	static JProgressBar progress = new JProgressBar(0,100); 											//Progressbar
 	static String dldir = CONSTS.MIFUDIR.toString(); 													//Download dir
-	static JTextArea modsDisplay = new JTextArea(20,25);
+	static JTextArea modsDisplay = new JTextArea(22,25);
 	
 	public static void addSomething(Component comp, String type, int x, int y, int width, int height){ //adds a component to the GUI
 		if(type.equalsIgnoreCase("button")){ 															//If the component to be added is considered a button
@@ -59,6 +59,8 @@ public class MIFU {
 		dir.setLineWrap(true);
 		modsDisplay.setLineWrap(true);
 		modsDisplay.setEditable(false);
+		error.setEditable(false);
+		error.setLineWrap(true);
 
 		selectedModlist = new File(CONSTS.MIFUDIR+"/modlist/modlist.txt");
 		System.out.println("Default Selected: "+selectedModlist);
@@ -96,6 +98,7 @@ public class MIFU {
 		Color color = new Color(frame.getBackground().getRGB());
 		list.setBackground(color);
 		dir.setBackground(color);
+		error.setBackground(color);
 		
 		addSomething(mifudesc,"label",0,0,4,1);
 		addSomething(Box.createHorizontalStrut(20),"spacer",1,0,1,10);
