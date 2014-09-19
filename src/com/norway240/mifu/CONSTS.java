@@ -10,4 +10,6 @@ public class CONSTS {
 	final static String HOMEDIR = System.getProperty("user.home"); 	//Users home dir
 	final static File MIFUDIR = new File(HOMEDIR+"/.mifu"); 		//MIFU dir
 	final static String MIFUDIRS = MIFUDIR.toString();
+	final static String FILEZ = "http://filez.norway240.com/";
+	final static String UDIR = System.getProperty("user.dir");
 }

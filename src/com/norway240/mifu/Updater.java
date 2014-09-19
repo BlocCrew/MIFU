@@ -8,7 +8,7 @@ public class Updater {
 	private static void restartMIFU(){
 		try {
 			@SuppressWarnings("unused")
-			Process proc = Runtime.getRuntime().exec("java -jar "+System.getProperty("user.dir")+"/MIFU.jar");
+			Process proc = Runtime.getRuntime().exec("java -jar "+CONSTS.UDIR+"/MIFU.jar");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -16,14 +16,14 @@ public class Updater {
 	}
 	
 	private static void updateMIFU(){
-		Download.downloadfile("http://filez.norway240.com/MIFU.jar", System.getProperty("user.dir"), "/MIFU.jar");
+		Download.downloadfile(CONSTS.FILEZ+"MIFU.jar", CONSTS.UDIR, "/MIFU.jar");
 		restartMIFU();
 	}
 	
 	public static void checkForMIFUUpdate(){
 		//Check latest version available
 		String latest = null;
-		Download.downloadfile("http://filez.norway240.com/mifuv.txt", CONSTS.MIFUDIRS, "/version.txt");
+		Download.downloadfile(CONSTS.FILEZ+"/mifuv.txt", CONSTS.MIFUDIRS, "/version.txt");
 		try {
 			File file = new File(CONSTS.MIFUDIR+"/version.txt");
 			FileReader fileReader = new FileReader(file);
@@ -35,6 +35,7 @@ public class Updater {
 			}
 			fileReader.close();
 			latest = stringBuffer.toString();
+			System.out.println("Current version: "+CONSTS.MIFUV);
 			System.out.println("Latest version: v"+latest);
 		} catch(IOException e) {
 			e.printStackTrace();

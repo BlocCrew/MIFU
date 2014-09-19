@@ -18,24 +18,24 @@ public class DList {
         lnr.close(); 																			//Closes the line number reader because it is not longer needed
         System.out.println("Reading modlist");
         System.out.println("Total number of mods to download: " + totalmods);
-	    System.out.println("Directory set to: "+MIFU.dldir);
+	    System.out.println("Directory set to: "+MIFU.dlDir);
 	    MIFU.progress.setMaximum(totalmods); 													//Set the max of the progressbar to how many mods there are to download
         
 		try {
 			BufferedReader cfgFile = new BufferedReader(new FileReader(modlist)); 				//Used to read the modlist
 			String line = null; 																//The line of the modlist it is on
 			int currmod = 0; 																	//The current mod it is downloading
-			new File(MIFU.dldir.toString()).mkdirs();	 										//Creates the path to where it will download if it dosen't exist
+			new File(MIFU.dlDir.toString()).mkdirs();	 										//Creates the path to where it will download if it dosen't exist
 			while ((line = cfgFile.readLine()) != null) { 										//This loops until it reaches the end of the modlist
 				line.trim(); 																	//Gets one line at a time
 			    String [] modlst = line.split(","); 											//Splits the line into 2 parts
 			    String link = modlst[0]; 														//The link
 			    String save = modlst[1]; 														//The location/filename
 			    if (link.equalsIgnoreCase("forge")) { 											//if the first part says forge
-			    	Download.downloadfile("http://files.minecraftforge.net/minecraftforge/minecraftforge-installer-"+save+".jar", MIFU.dldir, "/forge-installer-"+save+".jar");
+			    	Download.downloadfile("http://files.minecraftforge.net/minecraftforge/minecraftforge-installer-"+save+".jar", MIFU.dlDir, "/forge-installer-"+save+".jar");
 			    	System.out.println("Downloaded: Minecraft forge version: "+save); 			//Downloads the forge installer
 			    } else {
-				    Download.downloadfile(link, MIFU.dldir, save); 											//Download the mod
+				    Download.downloadfile(link, MIFU.dlDir, save); 											//Download the mod
 				}
 			    currmod++; 																		//Go on to the next mod
 			    MIFU.progress.setValue(currmod); 												//Set the progressbar to how many mods have been downloaded

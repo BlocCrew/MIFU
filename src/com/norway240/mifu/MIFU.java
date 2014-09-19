@@ -28,11 +28,11 @@ public class MIFU {
 	static JTextArea list = new JTextArea("No list chosen",4,4); 													//Displays chosen modlist
 	static JTextArea dir = new JTextArea("No dir chosen",4,4); 													//Displays chosen dir
 	static JTextArea error = new JTextArea(2,2);
-	static JButton chmods = new JButton("CHOOSE MODLIST"); 												//Choose modlist button
-	static JButton chdir = new JButton("CHOOSE DIR"); 													//Choose dir button
-	static JButton dlmods = new JButton("Download"); 													//Download button
+	static JButton chMods = new JButton("CHOOSE MODLIST"); 												//Choose modlist button
+	static JButton chDir = new JButton("CHOOSE DIR"); 													//Choose dir button
+	static JButton dlMods = new JButton("Download"); 													//Download button
 	static JProgressBar progress = new JProgressBar(0,100); 											//Progressbar
-	static String dldir = CONSTS.MIFUDIR.toString(); 													//Download dir
+	static String dlDir = CONSTS.MIFUDIR.toString(); 													//Download dir
 	static JTextArea modsDisplay = new JTextArea(22,25);
 	
 	public static void addSomething(Component comp, String type, int x, int y, int width, int height){ //adds a component to the GUI
@@ -67,9 +67,9 @@ public class MIFU {
 		selectedModlist = new File(CONSTS.MIFUDIR+"/modlist/modlist.txt");
 		System.out.println("Default Selected: "+selectedModlist);
 		list.setText(selectedModlist.toString());
-		dldir = CONSTS.MIFUDIR.toString();
-		System.out.println("Default Selected: "+dldir);
-		dir.setText(dldir);
+		dlDir = CONSTS.MIFUDIR.toString();
+		System.out.println("Default Selected: "+dlDir);
+		dir.setText(dlDir);
 		
 		/*
 		 * If this is the first time running MIFU, This downloads our default modlist and creates the default dir
@@ -102,6 +102,9 @@ public class MIFU {
 		dir.setBackground(color);
 		error.setBackground(color);
 		
+		/*
+		 * Create the layout
+		 */
 		addSomething(mifudesc,"label",0,0,4,1);
 		addSomething(Box.createHorizontalStrut(20),"spacer",1,0,1,10);
 		addSomething(modslbl,"label",5,0,1,1);
@@ -123,18 +126,18 @@ public class MIFU {
 
 		addSomething(Box.createVerticalStrut(30),"spacer",0,9,4,1);
 		
-		addSomething(chmods,"button",0,10,1,1);
+		addSomething(chMods,"button",0,10,1,1);
 		addSomething(Box.createHorizontalStrut(10),"spacer",1,10,1,1);
-		addSomething(chdir,"button",2,10,1,1);
+		addSomething(chDir,"button",2,10,1,1);
 		addSomething(Box.createHorizontalStrut(10),"spacer",3,10,1,1);
 
 		addSomething(Box.createVerticalStrut(10),"spacer",0,11,4,1);
 		
-		addSomething(dlmods,"button",0,12,3,1);
+		addSomething(dlMods,"button",0,12,3,1);
 		
 		addSomething(Box.createVerticalStrut(10),"spacer",0,13,4,1);
 
-		addSomething(progress,"progressbar",0,14,6,1);
+		addSomething(progress,"progress",0,14,6,1);
 		
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
