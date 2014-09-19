@@ -2,9 +2,11 @@ package com.norway240.mifu;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import java.io.File;
 
 import javax.swing.AbstractButton;
@@ -139,6 +141,8 @@ public class MIFU {
 		frame.pack();
 		frame.setSize(frame.getWidth()+10,frame.getHeight()+10);
 		frame.setResizable(false);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
 		frame.setVisible(true); 																		//Display the GUI
 		
 		System.out.println(CONSTS.MIFUDIR);
