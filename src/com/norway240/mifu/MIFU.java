@@ -138,6 +138,7 @@ public class MIFU {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setSize(frame.getWidth()+10,frame.getHeight()+10);
+		frame.setResizable(false);
 		frame.setVisible(true); 																		//Display the GUI
 		
 		System.out.println(CONSTS.MIFUDIR);
