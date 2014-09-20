@@ -6,5 +6,6 @@ a.k.a. "MIFU"
 
 This downloads mods for you automatically so you don't have to!
 
-Visit the wiki for more info:
+Visit the wiki or my website for more info:
 https://github.com/norway240/MIFU/wiki
+http://norway240.com/mifu
