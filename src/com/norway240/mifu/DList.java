@@ -37,7 +37,8 @@ public class DList {
 			    	Download.downloadfile("http://files.minecraftforge.net/minecraftforge/minecraftforge-installer-"+save+".jar", MIFU.dlDir, "/forge-installer-"+save+".jar");
 			    	System.out.println("Downloaded: Minecraft forge version: "+save); 			//Downloads the forge installer
 			    }else if(link.equalsIgnoreCase("extract")){
-			    	//TODO: Extract any specified zip file
+			    	String [] zip = save.split("\\|");
+			    	Extract.ExtractZipFile(zip[0], zip[1]);
 			    }else if(link.equalsIgnoreCase("thanks")){
 			    	String [] authorsArr = save.split("\\|");
 			    	String authors = authorsArr[0] + ", ";
