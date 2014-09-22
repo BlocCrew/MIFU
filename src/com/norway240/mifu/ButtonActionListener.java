@@ -44,13 +44,17 @@ public class ButtonActionListener {
 				chooser.setDialogTitle("Choose a dir");
 				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); 							//Only allow choosing directories
 			    int returnVal = chooser.showOpenDialog(chooser); 										//Opens the window and waits for the user to find a dir
-			    if(returnVal == JFileChooser.APPROVE_OPTION) { 											//If they open a dir
-			    	MIFU.dlDir = chooser.getSelectedFile().getAbsolutePath(); 							//Set the download directory to that dir
-					System.out.println("Chosen: "+chooser.getSelectedFile().getAbsolutePath());
-					MIFU.dir.setText(chooser.getSelectedFile().getAbsolutePath());
+			    if(returnVal == JFileChooser.APPROVE_OPTION) { 	
+			    	MIFU.dlDir = chooser.getSelectedFile().getAbsolutePath();
 					chooser.getSelectedFile().getAbsoluteFile().mkdirs();
-					File modsfolder = new File(chooser.getSelectedFile().getAbsolutePath()+"/mods"); 	//Create a mods folder (There has been an issue with this not creating otherwise)
-					modsfolder.mkdir(); 																//Creates the mods folder inside the dir the user selected
+					System.out.println("Chosen: "+MIFU.dlDir);
+					MIFU.dir.setText(MIFU.dlDir);
+					File modsFolder = new File(MIFU.dlDir+"/mods");
+					modsFolder.mkdir();
+					File coremodsFolder = new File(MIFU.dlDir+"/coremods");
+					coremodsFolder.mkdir();
+					File configFolder = new File(MIFU.dlDir+"/config");
+					configFolder.mkdir();
 			    }
 			}else if(e.getSource()==MIFU.dlMods){ 														//If the clicked the "Download" button
 				System.out.println("DOWNLOAD");
