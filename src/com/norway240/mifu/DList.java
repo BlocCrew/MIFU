@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
 
+import javax.swing.JOptionPane;
+
 public class DList {
 	
 	public static void dlModlist(File modlist) throws InterruptedException, IOException{
@@ -34,7 +36,18 @@ public class DList {
 			    if (link.equalsIgnoreCase("forge")) { 											//if the first part says forge
 			    	Download.downloadfile("http://files.minecraftforge.net/minecraftforge/minecraftforge-installer-"+save+".jar", MIFU.dlDir, "/forge-installer-"+save+".jar");
 			    	System.out.println("Downloaded: Minecraft forge version: "+save); 			//Downloads the forge installer
-			    } else {
+			    }else if(link.equalsIgnoreCase("extract")){
+			    	//TODO: Extract any specified zip file
+			    }else if(link.equalsIgnoreCase("thanks")){
+			    	String [] authorsArr = save.split("\\|");
+			    	String authors = authorsArr[0] + ", ";
+			    	for(int i=1;i<authorsArr.length-1;i++){
+			    		authors = authors + authorsArr[i] + ", ";
+			    	}
+			    	authors = authors + "and " + authorsArr[authorsArr.length-1];
+			    	String thanks = "Thanks to: " + authors + " for making these mods possible!";
+			    	JOptionPane.showMessageDialog(MIFU.frame, "<html><body><p style='width: 400px;text-align:center;'>"+thanks+"</body></html>", "Thanks!", JOptionPane.PLAIN_MESSAGE);
+			    }else{
 				    Download.downloadfile(link, MIFU.dlDir, save); 											//Download the mod
 				}
 			    currmod++; 																		//Go on to the next mod
@@ -50,12 +63,12 @@ public class DList {
 			System.out.println("Unexpected File IO Error");
 		}
 
-		boolean configcheck = new File(CONSTS.MIFUDIR+"/config.zip").isFile(); 					//Check if there is a config.zip
+		boolean configcheck = new File(MIFU.dlDir+"/config.zip").isFile(); 					//Check if there is a config.zip
 	    if(configcheck) { 																		//If there is
 	    	System.out.println("Extracting config.zip");
-	    	File configfolder = new File(CONSTS.MIFUDIR+"/config"); 							//Define a config folder
+	    	File configfolder = new File(MIFU.dlDir+"/config"); 							//Define a config folder
 	    	configfolder.mkdir(); 																//Create the config folder
-	    	Extract.ExtractZipFile(CONSTS.MIFUDIR+"/config.zip", CONSTS.MIFUDIR+"/config/"); 	//Extract the zip to it
+	    	Extract.ExtractZipFile(MIFU.dlDir+"/config.zip", MIFU.dlDir+"/config/"); 	//Extract the zip to it
 	    	Thread.sleep(1000);
 	    }
 	}

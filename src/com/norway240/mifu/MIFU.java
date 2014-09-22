@@ -24,6 +24,7 @@ public class MIFU {
 	static int style = Font.PLAIN;
 	static Font font = new Font("Verdana", style, 18);
 	static File selectedModlist; 																		//Path to the selected modlist
+	static JFrame frame = new JFrame("MIFU "+CONSTS.MIFUV);
 	static JPanel panel = new JPanel(new GridBagLayout()); 												//Panel holds GUI elements
 	static JTextArea list = new JTextArea("No list chosen",4,4); 													//Displays chosen modlist
 	static JTextArea dir = new JTextArea("No dir chosen",4,4); 													//Displays chosen dir
@@ -51,8 +52,6 @@ public class MIFU {
 	}
 	
 	public static void main(String[] args){ 															//The actual program
-		Updater.checkForMIFUUpdate();
-		JFrame frame = new JFrame("MIFU "+CONSTS.MIFUV); 												//The GUI
 		progress.setStringPainted(true); 																//So the progressbar can have text on it
 		progress.setString("Click download to begin"); 													//Info on the bar
 		list.setEditable(false);
@@ -72,7 +71,7 @@ public class MIFU {
 		dir.setText(dlDir);
 		
 		/*
-		 * If this is the first time running MIFU, This downloads our default modlist and creates the default dir
+		 * If this is the first time running MIFU, This creates the default dir
 		 */
 		if (!CONSTS.MIFUDIR.exists()){
 			CONSTS.MIFUDIR.mkdir(); 																	//Creates the default dir
@@ -80,9 +79,13 @@ public class MIFU {
 			modlists.mkdir(); 																			//Creates the default modlist folder
 			File mods = new File(CONSTS.MIFUDIR.toString()+"/mods"); 									//Defines the default mods folder
 			mods.mkdir(); 																				//Creates the default mods folder
-			Download.downloadfile("http://dl.bloccrew.com/modlist.txt", CONSTS.MIFUDIRS, "/modlist/modlist.txt"); //Downloads our default modlist.txt
 			System.out.println("MIFU Directory created");
 		}
+		
+		//Downloads our default modlist.txt
+		Download.downloadfile("http://dl.bloccrew.com/modlist.txt", CONSTS.MIFUDIRS, "/modlist/modlist.txt");
+		//Check for update
+		Updater.checkForMIFUUpdate();
 		
 		/*
 		 * GUI
