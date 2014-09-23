@@ -39,15 +39,6 @@ public class DList {
 			    }else if(link.equalsIgnoreCase("extract")){
 			    	String [] zip = save.split("\\|");
 			    	Extract.ExtractZipFile(zip[0], zip[1]);
-			    }else if(link.equalsIgnoreCase("thanks")){
-			    	String [] authorsArr = save.split("\\|");
-			    	String authors = authorsArr[0] + ", ";
-			    	for(int i=1;i<authorsArr.length-1;i++){
-			    		authors = authors + authorsArr[i] + ", ";
-			    	}
-			    	authors = authors + "and " + authorsArr[authorsArr.length-1];
-			    	String thanks = "Thanks to: " + authors + " for making these mods possible!";
-			    	JOptionPane.showMessageDialog(MIFU.frame, "<html><body><p style='width: 400px;text-align:center;'>"+thanks+"</body></html>", "Thanks!", JOptionPane.PLAIN_MESSAGE);
 			    }else{
 				    Download.downloadfile(link, MIFU.dlDir, save); 											//Download the mod
 				}
