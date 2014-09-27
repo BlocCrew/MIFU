@@ -6,8 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
 
-import javax.swing.JOptionPane;
-
 public class DList {
 	
 	public static void dlModlist(File modlist) throws InterruptedException, IOException{
@@ -34,11 +32,11 @@ public class DList {
 			    String link = modlst[0]; 														//The link
 			    String save = modlst[1]; 														//The location/filename
 			    if (link.equalsIgnoreCase("forge")) { 											//if the first part says forge
-			    	Download.downloadfile("http://files.minecraftforge.net/minecraftforge/minecraftforge-installer-"+save+".jar", MIFU.dlDir, "/forge-installer-"+save+".jar");
+			    	Download.downloadfile("http://files.minecraftforge.net/maven/net/minecraftforge/forge/"+save+"/forge-"+save+"-installer.jar", MIFU.dlDir, "/forge-installer-"+save+".jar");
 			    	System.out.println("Downloaded: Minecraft forge version: "+save); 			//Downloads the forge installer
 			    }else if(link.equalsIgnoreCase("extract")){
 			    	String [] zip = save.split("\\|");
-			    	Extract.ExtractZipFile(zip[0], zip[1]);
+			    	Extract.ExtractZipFile(MIFU.dlDir+zip[0], MIFU.dlDir+zip[1]);
 			    }else{
 				    Download.downloadfile(link, MIFU.dlDir, save); 											//Download the mod
 				}

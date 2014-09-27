@@ -90,7 +90,7 @@ public class MIFU {
 		Download.downloadfile("http://dl.bloccrew.com/modlist.txt", CONSTS.MIFUDIRS, "/modlist/modlist.txt");
 		//Check for update
 		Updater.checkForMIFUUpdate();
-		
+
 		/*
 		 * GUI
 		 */
