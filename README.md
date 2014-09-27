@@ -9,3 +9,5 @@ This downloads mods for you automatically so you don't have to!
 Visit the wiki or my website for more info:
 https://github.com/norway240/MIFU/wiki
 http://norway240.com/mifu
+
+IGNORE THIS
