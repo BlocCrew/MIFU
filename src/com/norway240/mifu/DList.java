@@ -33,7 +33,7 @@ public class DList {
 			    	Download.downloadfile("http://files.minecraftforge.net/maven/net/minecraftforge/forge/"+entry[1]+"/forge-"+entry[1]+"-installer.jar", MIFU.dlDir, "/forge-installer-"+entry[1]+".jar");
 			    	System.out.println("Downloaded: Minecraft forge version: "+entry[1]); 			//Downloads the forge installer
 			    }else if(entry[0].equalsIgnoreCase("extract")){
-			    	Extract.ExtractZipFile(MIFU.dlDir+entry[1], MIFU.dlDir+entry[2]);
+			    	Extract.ExtractZipFile(MIFU.dlDir, entry[1], MIFU.dlDir+entry[2]);
 			    }else{
 				    Download.downloadfile(entry[0], MIFU.dlDir, entry[1]); 											//Download the mod
 				}

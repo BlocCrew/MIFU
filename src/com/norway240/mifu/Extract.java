@@ -10,9 +10,9 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 public class  Extract {
-    public static void ExtractZipFile(String strZipFile, String destination) { //This extracts a zip file given to it
+    public static void ExtractZipFile(String path, String strZipFile, String destination) { //This extracts a zip file given to it
     	 try{
-	         File fSourceZip = new File(strZipFile);
+	         File fSourceZip = new File(path+strZipFile);
 	         String zipPath = destination;
 	         File temp = new File(zipPath);
 	         temp.mkdir();
@@ -49,7 +49,7 @@ public class  Extract {
 	                 bis.close();
 	             }
 	         }
-	         MIFU.modsDisplay.append("Extracted: "+strZipFile);
+	         MIFU.modsDisplay.append("Extracted: "+strZipFile+"\n");
          }catch(IOException ioe){
         	 System.out.println("IOError :" + ioe);
          }
