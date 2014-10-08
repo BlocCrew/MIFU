@@ -1,6 +1,7 @@
 package com.norway240.mifu;
 
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,6 +13,7 @@ public class Download {
 	
 	public static void downloadfile(String DLURL, String DLDIR, String DLFILE) { //This downloads a mod given the url and the location/filename
 		String DLOC = DLDIR+DLFILE; //The dir to download to
+		new File(DLOC).getParentFile().mkdirs(); //Create parent dirs
 		
 		System.out.println("URL: "+ DLURL);
 		System.out.println("FILE: "+ DLOC);

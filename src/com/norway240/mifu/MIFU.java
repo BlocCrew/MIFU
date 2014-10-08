@@ -75,19 +75,12 @@ public class MIFU {
 		 */
 		if (!CONSTS.MIFUDIR.exists()){
 			CONSTS.MIFUDIR.mkdir(); 																	//Creates the default dir
-			File modlists = new File(CONSTS.MIFUDIRS+"/modlist"); 							//Defines the default modlist folder
-			modlists.mkdir(); 																			//Creates the default modlist folder
-			File mods = new File(CONSTS.MIFUDIRS+"/mods"); 									//Defines the default mods folder
-			mods.mkdir(); 																				//Creates the default mods folder
-			File coremods = new File(CONSTS.MIFUDIRS+"/coremods");
-			coremods.mkdir();
-			File config = new File(CONSTS.MIFUDIRS+"/config");
-			config.mkdir();
+			new File(CONSTS.MIFUDIRS+"/modlist").mkdir();
 			System.out.println("MIFU Directory created");
 		}
 		
 		//Downloads our default modlist.txt
-		Download.downloadfile("http://dl.bloccrew.com/modlist.txt", CONSTS.MIFUDIRS, "/modlist/modlist.txt");
+		Download.downloadfile(CONSTS.ourModlist, CONSTS.MIFUDIRS, "/modlist/modlist.txt");
 		//Check for update
 		Updater.checkForMIFUUpdate();
 

@@ -49,12 +49,6 @@ public class ButtonActionListener {
 					chooser.getSelectedFile().getAbsoluteFile().mkdirs();
 					System.out.println("Chosen: "+MIFU.dlDir);
 					MIFU.dir.setText(MIFU.dlDir);
-					File modsFolder = new File(MIFU.dlDir+"/mods");
-					modsFolder.mkdir();
-					File coremodsFolder = new File(MIFU.dlDir+"/coremods");
-					coremodsFolder.mkdir();
-					File configFolder = new File(MIFU.dlDir+"/config");
-					configFolder.mkdir();
 			    }
 			}else if(e.getSource()==MIFU.dlMods){ 														//If the clicked the "Download" button
 				System.out.println("DOWNLOAD");

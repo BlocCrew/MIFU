@@ -28,17 +28,14 @@ public class DList {
 			new File(MIFU.dlDir.toString()).mkdirs();	 										//Creates the path to where it will download if it dosen't exist
 			while ((line = cfgFile.readLine()) != null) { 										//This loops until it reaches the end of the modlist
 				line.trim(); 																	//Gets one line at a time
-			    String [] modlst = line.split(","); 											//Splits the line into 2 parts
-			    String link = modlst[0]; 														//The link
-			    String save = modlst[1]; 														//The location/filename
-			    if (link.equalsIgnoreCase("forge")) { 											//if the first part says forge
-			    	Download.downloadfile("http://files.minecraftforge.net/maven/net/minecraftforge/forge/"+save+"/forge-"+save+"-installer.jar", MIFU.dlDir, "/forge-installer-"+save+".jar");
-			    	System.out.println("Downloaded: Minecraft forge version: "+save); 			//Downloads the forge installer
-			    }else if(link.equalsIgnoreCase("extract")){
-			    	String [] zip = save.split("\\|");
-			    	Extract.ExtractZipFile(MIFU.dlDir+zip[0], MIFU.dlDir+zip[1]);
+			    String [] entry = line.split(","); 											//Splits the line into 2 parts
+			    if (entry[0].equalsIgnoreCase("forge")) { 											//if the first part says forge
+			    	Download.downloadfile("http://files.minecraftforge.net/maven/net/minecraftforge/forge/"+entry[1]+"/forge-"+entry[1]+"-installer.jar", MIFU.dlDir, "/forge-installer-"+entry[1]+".jar");
+			    	System.out.println("Downloaded: Minecraft forge version: "+entry[1]); 			//Downloads the forge installer
+			    }else if(entry[0].equalsIgnoreCase("extract")){
+			    	Extract.ExtractZipFile(MIFU.dlDir+entry[1], MIFU.dlDir+entry[2]);
 			    }else{
-				    Download.downloadfile(link, MIFU.dlDir, save); 											//Download the mod
+				    Download.downloadfile(entry[0], MIFU.dlDir, entry[1]); 											//Download the mod
 				}
 			    currmod++; 																		//Go on to the next mod
 			    MIFU.progress.setValue(currmod); 												//Set the progressbar to how many mods have been downloaded
@@ -52,15 +49,7 @@ public class DList {
 		} catch (IOException e) {
 			System.out.println("Unexpected File IO Error");
 		}
-
-		boolean configcheck = new File(MIFU.dlDir+"/config.zip").isFile(); 					//Check if there is a config.zip
-	    if(configcheck) { 																		//If there is
-	    	System.out.println("Extracting config.zip");
-	    	File configfolder = new File(MIFU.dlDir+"/config"); 							//Define a config folder
-	    	configfolder.mkdir(); 																//Create the config folder
-	    	Extract.ExtractZipFile(MIFU.dlDir+"/config.zip", MIFU.dlDir+"/config/"); 	//Extract the zip to it
-	    	Thread.sleep(1000);
-	    }
+		
 	}
 
 }
