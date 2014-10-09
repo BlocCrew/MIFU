@@ -28,12 +28,16 @@ public class DList {
 			new File(MIFU.dlDir.toString()).mkdirs();	 										//Creates the path to where it will download if it dosen't exist
 			while ((line = cfgFile.readLine()) != null) { 										//This loops until it reaches the end of the modlist
 				line.trim(); 																	//Gets one line at a time
-			    String [] entry = line.split(","); 											//Splits the line into 2 parts
+			    String [] entry = line.split(","); 												//Splits the line into 2 parts
 			    if (entry[0].equalsIgnoreCase("forge")) { 											//if the first part says forge
 			    	Download.downloadfile("http://files.minecraftforge.net/maven/net/minecraftforge/forge/"+entry[1]+"/forge-"+entry[1]+"-installer.jar", MIFU.dlDir, "/forge-installer-"+entry[1]+".jar");
 			    	System.out.println("Downloaded: Minecraft forge version: "+entry[1]); 			//Downloads the forge installer
 			    }else if(entry[0].equalsIgnoreCase("extract")){
-			    	Extract.ExtractZipFile(MIFU.dlDir, entry[1], MIFU.dlDir+entry[2]);
+			    	if(entry.length>3){
+			    		Extract.ExtractZipFile(MIFU.dlDir, entry[1], MIFU.dlDir+entry[2], entry[3]);
+			    	}else{
+			    		Extract.ExtractZipFile(MIFU.dlDir, entry[1], MIFU.dlDir+entry[2]);
+			    	}
 			    }else{
 				    Download.downloadfile(entry[0], MIFU.dlDir, entry[1]); 											//Download the mod
 				}
