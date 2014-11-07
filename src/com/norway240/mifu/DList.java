@@ -8,7 +8,7 @@ import java.io.LineNumberReader;
 
 public class DList {
 	
-	public static void dlModlist(File modlist) throws InterruptedException, IOException{
+	public static void dlModlist(File modlist, String dloc) throws InterruptedException, IOException{
 		FileReader fr = new FileReader(modlist); 												//Opens the selected modlist
 		LineNumberReader lnr = new LineNumberReader(fr); 										//Used to read the modlist
 		int totalmods = 0; 																		//Start the mod counting at 0 of course
@@ -18,7 +18,7 @@ public class DList {
         lnr.close(); 																			//Closes the line number reader because it is not longer needed
         System.out.println("Reading modlist");
         System.out.println("Total number of mods to download: " + totalmods);
-	    System.out.println("Directory set to: "+MIFU.dlDir);
+	    System.out.println("Directory set to: "+dloc);
 	    MIFU.progress.setMaximum(totalmods); 													//Set the max of the progressbar to how many mods there are to download
         
 		try {
@@ -30,16 +30,16 @@ public class DList {
 				line.trim(); 																	//Gets one line at a time
 			    String [] entry = line.split(","); 												//Splits the line into 2 parts
 			    if (entry[0].equalsIgnoreCase("forge")) { 											//if the first part says forge
-			    	Download.downloadfile("http://files.minecraftforge.net/maven/net/minecraftforge/forge/"+entry[1]+"/forge-"+entry[1]+"-installer.jar", MIFU.dlDir, "/forge-installer-"+entry[1]+".jar");
+			    	Download.downloadfile("http://files.minecraftforge.net/maven/net/minecraftforge/forge/"+entry[1]+"/forge-"+entry[1]+"-installer.jar", dloc, "/forge-installer-"+entry[1]+".jar");
 			    	System.out.println("Downloaded: Minecraft forge version: "+entry[1]); 			//Downloads the forge installer
 			    }else if(entry[0].equalsIgnoreCase("extract")){
 			    	if(entry.length>3){
-			    		Extract.ExtractZipFile(MIFU.dlDir, entry[1], MIFU.dlDir+entry[2], entry[3]);
+			    		Extract.ExtractZipFile(dloc, entry[1], dloc+entry[2], entry[3]);
 			    	}else{
-			    		Extract.ExtractZipFile(MIFU.dlDir, entry[1], MIFU.dlDir+entry[2]);
+			    		Extract.ExtractZipFile(dloc, entry[1], dloc+entry[2]);
 			    	}
 			    }else{
-				    Download.downloadfile(entry[0], MIFU.dlDir, entry[1]); 											//Download the mod
+				    Download.downloadfile(entry[0], dloc, entry[1]); 											//Download the mod
 				}
 			    currmod++; 																		//Go on to the next mod
 			    MIFU.progress.setValue(currmod); 												//Set the progressbar to how many mods have been downloaded

@@ -49,10 +49,24 @@ public class ButtonActionListener {
 					chooser.getSelectedFile().getAbsoluteFile().mkdirs();
 					System.out.println("Chosen: "+MIFU.dlDir);
 					MIFU.dir.setText(MIFU.dlDir);
+					MIFU.createProfile = false;
+					MIFU.cprofile.setSelected(false);
 			    }
 			}else if(e.getSource()==MIFU.dlMods){ 														//If the clicked the "Download" button
 				System.out.println("DOWNLOAD");
 				new Thread(new DThread()).start(); 														//Runs the process of downloading mods
+			}else if(e.getSource()==MIFU.cprofile){
+				if(MIFU.cprofile.isSelected()){
+					MIFU.createProfile = true;
+					System.out.println("Enabled");
+					File prof = new File(CONSTS.defaultProfile);
+					prof.mkdirs();
+					MIFU.dlDir = prof.toString();
+					MIFU.dir.setText(MIFU.dlDir);
+				}else{
+					MIFU.createProfile = false;
+					System.out.println("Disabled");
+				}
 			}
 		}
 	};

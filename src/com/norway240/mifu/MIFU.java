@@ -12,6 +12,7 @@ import java.io.File;
 import javax.swing.AbstractButton;
 import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -35,11 +36,15 @@ public class MIFU {
 	static JProgressBar progress = new JProgressBar(0,100); 											//Progressbar
 	static String dlDir = CONSTS.MIFUDIR.toString(); 													//Download dir
 	static JTextArea modsDisplay = new JTextArea(22,25);
+	static JCheckBox cprofile = new JCheckBox("Create Minecraft Launcher Profile");
+	static boolean createProfile = false;
 	
 	public static void addSomething(Component comp, String type, int x, int y, int width, int height){ //adds a component to the GUI
+		ButtonActionListener bal = new ButtonActionListener(); 											//Button action listener
 		if(type.equalsIgnoreCase("button")){ 															//If the component to be added is considered a button
-			ButtonActionListener bal = new ButtonActionListener(); 										//Button action listener
 			((AbstractButton) comp).addActionListener(bal.act); 										//Add the action listener to it
+		}else if(type.equalsIgnoreCase("chkbox")){
+			((JCheckBox) comp).addActionListener(bal.act);
 		}
 		GridBagConstraints c = new GridBagConstraints(); 												//Layout stuff
 		c.fill = GridBagConstraints.HORIZONTAL; 														//Fills the cell in the layout
@@ -125,19 +130,22 @@ public class MIFU {
 		addSomething(error,"label",0,8,3,1);
 
 		addSomething(Box.createVerticalStrut(30),"spacer",0,9,4,1);
-		
-		addSomething(chMods,"button",0,10,1,1);
-		addSomething(Box.createHorizontalStrut(10),"spacer",1,10,1,1);
-		addSomething(chDir,"button",2,10,1,1);
-		addSomething(Box.createHorizontalStrut(10),"spacer",3,10,1,1);
 
-		addSomething(Box.createVerticalStrut(10),"spacer",0,11,4,1);
+		addSomething(cprofile, "chkbox", 0,10,3,1);
 		
-		addSomething(dlMods,"button",0,12,3,1);
-		
-		addSomething(Box.createVerticalStrut(10),"spacer",0,13,4,1);
+		addSomething(chMods,"button",0,11,1,1);
+		addSomething(Box.createHorizontalStrut(10),"spacer",1,11,1,1);
+		addSomething(chDir,"button",2,11,1,1);
+		addSomething(Box.createHorizontalStrut(10),"spacer",3,11,1,1);
 
-		addSomething(progress,"progress",0,14,6,1);
+		addSomething(Box.createVerticalStrut(10),"spacer",0,12,4,1);
+		
+		addSomething(dlMods,"button",0,13,3,1);
+		
+		addSomething(Box.createVerticalStrut(10),"spacer",0,14,4,1);
+
+		addSomething(progress,"progress",0,15,6,1);
+		
 		
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

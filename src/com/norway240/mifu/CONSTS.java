@@ -15,4 +15,5 @@ public class CONSTS {
 	final static String FILEZ = "http://filez.norway240.com/";
 	final static String UDIR = System.getProperty("user.dir");
 	final static String ourModlist = "http://deciliter.bloccrew.com/modlist.txt";
+	final static String defaultProfile = MCDIR+"/profiles/mifu";
 }
