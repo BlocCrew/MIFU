@@ -11,6 +11,12 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class ButtonActionListener {
+	private static void getModlistName(String file){
+		String [] l = file.split(".txt");
+		String [] l2 = l[0].split("/");
+		MIFU.mName = l2[l2.length-1];
+		System.out.println("mNAME: "+MIFU.mName);
+	}
 	ActionListener act = new ActionListener(){
 		public void actionPerformed(ActionEvent e){
 			JFileChooser chooser = new JFileChooser();
@@ -23,8 +29,9 @@ public class ButtonActionListener {
 						+ "Just click cancel and you can do that next");
 				try {
 					URL mlink = new URL(modlistlink);
-					Download.downloadfile(mlink.toString(), CONSTS.MIFUDIRS, "/modlist/usermodlist.txt");
-					MIFU.selectedModlist = new File(CONSTS.MIFUDIR+"/modlist/usermodlist.txt");
+					getModlistName(modlistlink);
+					Download.downloadfile(mlink.toString(), CONSTS.MIFUDIRS, "/modlist/"+MIFU.mName+".txt");
+					MIFU.selectedModlist = new File(CONSTS.MIFUDIR+"/modlist/"+MIFU.mName+".txt");
 					System.out.println("Chosen: "+modlistlink);
 					MIFU.list.setText(modlistlink);
 				} catch (MalformedURLException e1) {
@@ -36,15 +43,17 @@ public class ButtonActionListener {
 				    if(returnVal == JFileChooser.APPROVE_OPTION) { 											//If the choose to open a file and not cancel
 				    	MIFU.selectedModlist = chooser.getSelectedFile().getAbsoluteFile(); 				//Set the selected modlist to what they chose
 						System.out.println("Chosen: "+MIFU.selectedModlist.toString());
+						getModlistName(MIFU.selectedModlist.toString());
 						MIFU.list.setText(MIFU.selectedModlist.toString());
 				    }
 				}
-			}else if(e.getSource()==MIFU.chDir){ 														//If the "Choose dir" button was clicked
+			}else if(e.getSource()==MIFU.chDir){ 
 				System.out.println("CHOOSEDIR");
 				chooser.setDialogTitle("Choose a dir");
 				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); 							//Only allow choosing directories
 			    int returnVal = chooser.showOpenDialog(chooser); 										//Opens the window and waits for the user to find a dir
 			    if(returnVal == JFileChooser.APPROVE_OPTION) { 	
+			    	MIFU.createProfile = false;
 			    	MIFU.dlDir = chooser.getSelectedFile().getAbsolutePath();
 					chooser.getSelectedFile().getAbsoluteFile().mkdirs();
 					System.out.println("Chosen: "+MIFU.dlDir);
@@ -66,6 +75,8 @@ public class ButtonActionListener {
 				}else{
 					MIFU.createProfile = false;
 					System.out.println("Disabled");
+					MIFU.dlDir = CONSTS.MIFUDIRS;
+					MIFU.dir.setText(MIFU.dlDir);
 				}
 			}
 		}

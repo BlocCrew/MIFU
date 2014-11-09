@@ -38,6 +38,7 @@ public class MIFU {
 	static JTextArea modsDisplay = new JTextArea(22,25);
 	static JCheckBox cprofile = new JCheckBox("Create Minecraft Launcher Profile");
 	static boolean createProfile = false;
+	static String mName = "mifu";
 	
 	public static void addSomething(Component comp, String type, int x, int y, int width, int height){ //adds a component to the GUI
 		ButtonActionListener bal = new ButtonActionListener(); 											//Button action listener
@@ -113,7 +114,7 @@ public class MIFU {
 		addSomething(mifudesc,"label",0,0,4,1);
 		addSomething(Box.createHorizontalStrut(20),"spacer",1,0,1,10);
 		addSomething(modslbl,"label",5,0,1,1);
-		addSomething(scroll,"textbox",5,2,1,11);
+		addSomething(scroll,"textbox",5,2,1,13);
 		
 		addSomething(Box.createVerticalStrut(10),"spacer",0,1,5,1);
 		
@@ -131,7 +132,8 @@ public class MIFU {
 
 		addSomething(Box.createVerticalStrut(30),"spacer",0,9,4,1);
 
-		addSomething(cprofile, "chkbox", 0,10,3,1);
+		//addSomething(cprofile, "chkbox", 0,10,3,1);
+		addSomething(Box.createVerticalStrut(10),"spacer",0,10,3,1);
 		
 		addSomething(chMods,"button",0,11,1,1);
 		addSomething(Box.createHorizontalStrut(10),"spacer",1,11,1,1);
